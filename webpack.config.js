@@ -23,7 +23,7 @@ const splitChunk = !Dev ? {} : {
     automaticNameDelimiter: '~',
     automaticNameMaxLength: 30,
   }
-} 
+}
 // 청크 최적화 비동기로 6개 리미트
 // 일반적으로 브라우저는 동시 6개까지 request 할 수 있음
 
@@ -51,6 +51,12 @@ module.exports = {
             options: { minimize: true }
           }
         ]
+      },
+      {
+        test:/\.(ts|tsx)$/,
+        exclude: /node_modules/,
+        include: srcPath,
+        use: ["ts-loader"]
       }
     ]
   },
