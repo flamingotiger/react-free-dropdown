@@ -28,12 +28,15 @@ const splitChunk = !Dev ? {} : {
 // 일반적으로 브라우저는 동시 6개까지 request 할 수 있음
 
 module.exports = {
-  entry: "./src/index.js", // 가져올 파일
+  entry: "./src/index.tsx", // 가져올 파일
   output: {
     filename: Dev ? '[name].js' : '[name].[chunkhash].js',
     path: path.resolve(__dirname + 'build')
   }, // 빌드후 결과물 파일
   ...webpackDevServer,
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".jsx"],
+  },
   mode: Dev ? "development" : "production", // 프로덕션모드, 개발자모드
   module: { // 로더
     rules: [
@@ -56,7 +59,7 @@ module.exports = {
         test:/\.(ts|tsx)$/,
         exclude: /node_modules/,
         include: srcPath,
-        use: ["ts-loader"]
+        loader: "ts-loader",
       }
     ]
   },
