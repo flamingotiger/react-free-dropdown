@@ -1,8 +1,8 @@
 import React from 'react';
-import FreeDropDown from "../FreeDropDown";
+import Fdd from "../Fdd";
 
 const Example: React.FC = () => {
-    return <FreeDropDown/>
+    return <Fdd/>
 }
 
 export default Example;
