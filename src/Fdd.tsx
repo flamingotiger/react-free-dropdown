@@ -7,11 +7,14 @@ interface FDDType {
 }
 
 interface FDDPropsType extends FDDType {
+    value?: string;
     children?: React.ReactNode;
+    onChange?: (value: string) => void;
 }
 
 interface FDDOptionType extends FDDType {
     value: string | number;
+    onChange?: (value: string) => void;
 }
 
 const FDDOptionStyle = {
@@ -44,6 +47,8 @@ const FDDSelectStyle = {
         font-size: 14px;
         line-height: 14px;
         border: 1px solid rgba(255,255,255,0);
+        width: 100%;
+        
         &:hover{
           border: 1px solid #00bfff;
         }
@@ -73,12 +78,15 @@ const FDDStyle = {
 }
 
 export const FDDOption: React.FC<FDDOptionType> = props => {
-    const {value, children} = props;
-    return <FDDOptionStyle.Wrapper>{children}</FDDOptionStyle.Wrapper>
+    const {value, children, onChange} = props;
+    const valueToString = value ? value.toString() : '';
+    return <FDDOptionStyle.Wrapper
+        onClick={() => onChange && onChange(valueToString)}>{children}</FDDOptionStyle.Wrapper>
 }
 
 const Fdd: React.FC<FDDPropsType> = props => {
-    const {children, className, style} = props;
+    const {children, className, style, onChange, value} = props;
+    const [noOnChangeValue, setNoOnChangeValue] = React.useState<string>('Select...');
     const [selectWidth, setSelectWidth] = React.useState<number>(0);
     const selectEl = React.useRef<HTMLDivElement>(null);
     useEffect(() => {
@@ -87,12 +95,17 @@ const Fdd: React.FC<FDDPropsType> = props => {
             setSelectWidth(width);
         }
     }, [selectEl]);
+    const noOnChange = (value: string) => setNoOnChangeValue(value);
+    const existOrNoOnChange = onChange ? onChange : noOnChange;
     return (<FDDStyle.Wrapper>
-        <FDDSelectStyle.Wrapper className={className} style={style} ref={selectEl}>Select...</FDDSelectStyle.Wrapper>
+        <FDDSelectStyle.Wrapper className={className} style={style}
+                                ref={selectEl}>{value ? value : noOnChangeValue}</FDDSelectStyle.Wrapper>
         {children &&
         <FDDStyle.Ul width={selectWidth}>
-          <FDDOption value=''>Select...</FDDOption>
-            {children}
+          <FDDOption value='' onChange={existOrNoOnChange}>Select...</FDDOption>
+            {React.Children.map(children, (child: any) => {
+                return React.cloneElement(child, {onChange});
+            })}
         </FDDStyle.Ul>}
     </FDDStyle.Wrapper>)
 }
