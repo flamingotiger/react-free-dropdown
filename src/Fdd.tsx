@@ -13,7 +13,7 @@ interface FDDPropsType extends FDDType {
 }
 
 interface FDDOptionType extends FDDType {
-    value: string | number;
+    value?: string | number;
     onChange?: (value: string) => void;
     children: React.ReactNode;
 }
@@ -80,7 +80,14 @@ const FDDStyle = {
 
 export const FDDOption: React.FC<FDDOptionType> = props => {
     const {value, children, onChange} = props;
-    const valueToString = value ? value.toString() : '';
+    let valueToString = '';
+    if (value) {
+        valueToString = value.toString()
+    } else {
+        if (typeof children === "string") {
+            valueToString = children;
+        }
+    }
     return <FDDOptionStyle.Wrapper
         onClick={() => onChange && onChange(valueToString)}>{children}</FDDOptionStyle.Wrapper>
 }
@@ -88,7 +95,8 @@ FDDOption.displayName = 'FDDOption';
 
 const Fdd: React.FC<FDDPropsType> = props => {
     const {children, className, style, onChange, value} = props;
-    const [noOnChangeValue, setNoOnChangeValue] = React.useState<string>('Select...');
+    const [noOnChangeValue, setNoOnChangeValue] = React.useState<string>('');
+    const [isFocus, setIsFocus] = React.useState<boolean>(false);
     const [selectWidth, setSelectWidth] = React.useState<number>(0);
     const selectEl = React.useRef<HTMLDivElement>(null);
     useEffect(() => {
@@ -97,18 +105,25 @@ const Fdd: React.FC<FDDPropsType> = props => {
             setSelectWidth(width);
         }
     }, [selectEl]);
-    const noOnChange = (value: string) => setNoOnChangeValue(value);
-    const existOrNoOnChange = onChange ? onChange : noOnChange;
-    return (<FDDStyle.Wrapper>
+    const existOrNoOnChange = (value: string) => {
+        if (onChange) {
+            onChange(value);
+        } else {
+            setNoOnChangeValue(value);
+        }
+        setIsFocus(false);
+    }
+    return (<FDDStyle.Wrapper tabIndex={1} onBlur={() => setIsFocus(false)}>
         <FDDSelectStyle.Wrapper className={className} style={style}
+                                onClick={() => setIsFocus(prevState => !prevState)}
                                 ref={selectEl}>{value ? value : noOnChangeValue}</FDDSelectStyle.Wrapper>
-        {children &&
+        {(isFocus && children) &&
         <FDDStyle.Ul width={selectWidth}>
           <FDDOption value='' onChange={existOrNoOnChange}>Select...</FDDOption>
             {React.Children.map(children, (child: React.ReactElement<FDDOptionType> & { type: { displayName?: string } }) => {
                 // Render when FDDOption is enabled only
                 if (child.type.displayName === 'FDDOption') {
-                    return React.cloneElement(child, {onChange});
+                    return React.cloneElement(child, {onChange: existOrNoOnChange});
                 } else {
                     return null;
                 }
