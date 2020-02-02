@@ -1,5 +1,8 @@
 import React, { CSSProperties, useEffect } from 'react';
 import styled from 'styled-components';
+import { color } from './common/styles';
+
+type Mode = 'dark' | 'white';
 
 interface FDDType {
     className?: string;
@@ -10,6 +13,7 @@ interface FDDPropsType extends FDDType {
     value?: string;
     children?: React.ReactElement<FDDOptionType, 'FDDOption'>[];
     onChange?: (value: string) => void;
+    mode?: Mode;
 }
 
 interface FDDOptionType extends FDDType {
@@ -23,43 +27,59 @@ const FDDOptionStyle = {
         width: 100%;
         cursor: pointer;
         list-style: none;
-        padding: 4px 4px 4px 8px;
+        padding: 8px;
         box-sizing: border-box;
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
-        font-size: 14px;
-        line-height: 14px;
-        color: white;
+        font-size: 12px;
+        line-height: 12px;
         &:hover{
-          background-color: #00bfff; 
+          background-color: ${color.keyColor};
+          color: #ffffff;
         }
     `
 }
+
+interface FDDSelectStyle {
+    mode: Mode,
+    isValue: boolean
+}
+
 const FDDSelectStyle = {
     Wrapper: styled.div`
         display: flex;
         align-items: center;
         cursor: pointer;
-        padding: 4px;
+        padding: 4px 4px 4px 8px;
         box-sizing: border-box;
-        background: white;
-        border-radius: 4px;
-        font-size: 14px;
-        line-height: 14px;
-        border: 1px solid rgba(255,255,255,0);
-        width: 100%;
-        
+        background: ${({mode}: FDDSelectStyle) => mode === 'white' ? color.white : color.dark};
+        color: ${({mode}: FDDSelectStyle) => mode === 'white' ? color.darkGray : 'rgba(245,245,245,0.8)'};
+        transition: color 0.3s;
         &:hover{
-          border: 1px solid #00bfff;
+          color: ${({mode}: FDDSelectStyle) => mode === 'white' ? color.black : color.white};
         }
+        font-size: 12px;
+        line-height: 12px;
+        border: 1px solid ${({mode}: FDDSelectStyle) => mode === 'white' ? color.gray : color.dark};
+        width: 100%;
+        min-width: 40px;
+        min-height: 20px;
     `
 }
+
+interface FDDStyleProps {
+    mode: Mode,
+    width: number,
+    isFocus: boolean
+}
+
 const FDDStyle = {
     Wrapper: styled.div`
         display: inline-block;
         position: relative;
         box-sizing: border-box;
+        font-weight: lighter;
     `,
     Ul: styled.ul`
         display: block;
@@ -69,12 +89,61 @@ const FDDStyle = {
         top: 100%;
         margin: 0;
         padding: 0;
-        width: ${(props: { width: number }) => `${props.width}px`};
-        box-sizing: border-box;        
-        border-radius: 4px;
-        background: rgba(100, 100, 100, 0.8);
+        ${({mode}: FDDStyleProps) => {
+        if (mode === 'white') {
+            return `
+                background: white;
+                color: rgb(100,100,100);
+                &::-webkit-scrollbar{
+                  width: 10px;
+                  padding: 0 2px;
+                  box-sizing: border-box;
+                }
+                &::-webkit-scrollbar-track {
+                  padding: 0 2px;
+                  box-sizing: border-box;
+                  background-color: rgb(220,220,220);
+                }
+                &::-webkit-scrollbar-thumb {
+                  background-color: rgb(190,190,190);
+                  width: 8px;
+                  border-radius: 10px;
+                  &:hover{
+                    background-color: rgb(180,180,180);
+                  }
+                }
+                `;
+        } else {
+            return `
+                background: ${color.dark};
+                color: white;
+                &::-webkit-scrollbar{
+                  width: 10px;
+                  padding: 0 2px;
+                  box-sizing: border-box;
+                }
+                &::-webkit-scrollbar-track {
+                  background-color: rgb(60,60,60);
+                }
+                &::-webkit-scrollbar-thumb {
+                  background-color: rgb(150,150,150);
+                  width: 8px;
+                  border-radius: 10px;
+                  &:hover{
+                    background-color: rgb(180,180,180);
+                  }
+                }
+                `
+        }
+    }};
+        width: ${({width}: FDDStyleProps) => `${width}px`};
+        box-sizing: border-box;
         overflow: hidden;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+        transition: max-height 0.2s;
+        max-height: ${({isFocus}: FDDStyleProps) => isFocus ? '100px' : '0'};
+        ${({isFocus}: FDDStyleProps) => isFocus ? 'overflow-y: auto' : 'overflow: auto'};
     `
 }
 
@@ -94,7 +163,7 @@ export const FDDOption: React.FC<FDDOptionType> = props => {
 FDDOption.displayName = 'FDDOption';
 
 const Fdd: React.FC<FDDPropsType> = props => {
-    const {children, className, style, onChange, value} = props;
+    const {children, className, style, onChange, value, mode = 'white'} = props;
     const [noOnChangeValue, setNoOnChangeValue] = React.useState<string>('');
     const [isFocus, setIsFocus] = React.useState<boolean>(false);
     const [selectWidth, setSelectWidth] = React.useState<number>(0);
@@ -113,13 +182,15 @@ const Fdd: React.FC<FDDPropsType> = props => {
         }
         setIsFocus(false);
     }
+    const isValue = value !== '' || noOnChangeValue !== '';
     return (<FDDStyle.Wrapper tabIndex={1} onBlur={() => setIsFocus(false)}>
         <FDDSelectStyle.Wrapper className={className} style={style}
                                 onClick={() => setIsFocus(prevState => !prevState)}
+                                isValue={isValue}
+                                mode={mode}
                                 ref={selectEl}>{value ? value : noOnChangeValue}</FDDSelectStyle.Wrapper>
-        {(isFocus && children) &&
-        <FDDStyle.Ul width={selectWidth}>
-          <FDDOption value='' onChange={existOrNoOnChange}>Select...</FDDOption>
+        {children &&
+        <FDDStyle.Ul width={selectWidth} isFocus={isFocus} mode={mode}>
             {React.Children.map(children, (child: React.ReactElement<FDDOptionType> & { type: { displayName?: string } }) => {
                 // Render when FDDOption is enabled only
                 if (child.type.displayName === 'FDDOption') {

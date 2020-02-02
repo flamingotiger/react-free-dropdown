@@ -5,11 +5,12 @@ const Example: React.FC = () => {
     const [value, setValue] = React.useState<string>('');
     return (
         <>
-            <Fdd onChange={(value: string) => setValue(value)} value={value}>
-                <FDDOption>test1</FDDOption>
-                <FDDOption value={2}>test2</FDDOption>
-                <FDDOption value={3}>test3</FDDOption>
-                <FDDOption value={4}>test4</FDDOption>
+            <Fdd onChange={(value: string) => setValue(value)} value={value} style={{width: '120px', height: '30px'}}>
+                <FDDOption value="React">React</FDDOption>
+                <FDDOption value="React Native">React Native</FDDOption>
+                <FDDOption value="Redux">Redux</FDDOption>
+                <FDDOption value="Redux Saga">Redux Saga</FDDOption>
+                <FDDOption value="Redux Thunk">Redux Thunk</FDDOption>
                 <div>?test</div>
             </Fdd>
         </>)
