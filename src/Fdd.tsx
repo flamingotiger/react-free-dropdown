@@ -8,13 +8,14 @@ interface FDDType {
 
 interface FDDPropsType extends FDDType {
     value?: string;
-    children?: React.ReactNode;
+    children?: React.ReactElement<FDDOptionType, 'FDDOption'>[];
     onChange?: (value: string) => void;
 }
 
 interface FDDOptionType extends FDDType {
     value: string | number;
     onChange?: (value: string) => void;
+    children: React.ReactNode;
 }
 
 const FDDOptionStyle = {
@@ -83,6 +84,7 @@ export const FDDOption: React.FC<FDDOptionType> = props => {
     return <FDDOptionStyle.Wrapper
         onClick={() => onChange && onChange(valueToString)}>{children}</FDDOptionStyle.Wrapper>
 }
+FDDOption.displayName = 'FDDOption';
 
 const Fdd: React.FC<FDDPropsType> = props => {
     const {children, className, style, onChange, value} = props;
@@ -103,8 +105,13 @@ const Fdd: React.FC<FDDPropsType> = props => {
         {children &&
         <FDDStyle.Ul width={selectWidth}>
           <FDDOption value='' onChange={existOrNoOnChange}>Select...</FDDOption>
-            {React.Children.map(children, (child: any) => {
-                return React.cloneElement(child, {onChange});
+            {React.Children.map(children, (child: React.ReactElement<FDDOptionType> & { type: { displayName?: string } }) => {
+                // Render when FDDOption is enabled only
+                if (child.type.displayName === 'FDDOption') {
+                    return React.cloneElement(child, {onChange});
+                } else {
+                    return null;
+                }
             })}
         </FDDStyle.Ul>}
     </FDDStyle.Wrapper>)
