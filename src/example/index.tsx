@@ -1,5 +1,5 @@
 import React from "react";
-import Fdd, { FDDOption } from "../Fdd";
+import Rfdd, { RFDDOption } from "../Rfdd";
 import styled from 'styled-components';
 
 const ExampleStyle = styled.div`
@@ -16,30 +16,30 @@ const Example: React.FC = () => {
     <>
     <h1>Free Drop Down</h1>
     <ExampleStyle>
-      <Fdd
+      <Rfdd
         onChange={(value: string) => setValue(value)}
         value={value}
         style={{ width: "120px", height: "30px"}}
         mode="dark"
       >
-        <FDDOption value="🍎Apple">🍎Apple</FDDOption>
-        <FDDOption value="🥕Carrot">🥕Carrot</FDDOption>
-        <FDDOption value="🍌Banana">🍌Banana</FDDOption>
-        <FDDOption value="🍇Grape">🍇Grape</FDDOption>
-        <FDDOption value="🍊Orange">🍊Orange</FDDOption>
-      </Fdd>
-      <Fdd
+        <RFDDOption value="🍎Apple">🍎Apple</RFDDOption>
+        <RFDDOption value="🥕Carrot">🥕Carrot</RFDDOption>
+        <RFDDOption value="🍌Banana">🍌Banana</RFDDOption>
+        <RFDDOption value="🍇Grape">🍇Grape</RFDDOption>
+        <RFDDOption value="🍊Orange">🍊Orange</RFDDOption>
+      </Rfdd>
+      <Rfdd
         onChange={(value: string) => setValue(value)}
         value={value}
         style={{ width: "120px", height: "30px" }}
         mode="white"
       >
-        <FDDOption value="🍎Apple">🍎Apple</FDDOption>
-        <FDDOption value="🥕Carrot">🥕Carrot</FDDOption>
-        <FDDOption value="🍌Banana">🍌Banana</FDDOption>
-        <FDDOption value="🍇Grape">🍇Grape</FDDOption>
-        <FDDOption value="🍊Orange">🍊Orange</FDDOption>
-      </Fdd>
+        <RFDDOption value="🍎Apple">🍎Apple</RFDDOption>
+        <RFDDOption value="🥕Carrot">🥕Carrot</RFDDOption>
+        <RFDDOption value="🍌Banana">🍌Banana</RFDDOption>
+        <RFDDOption value="🍇Grape">🍇Grape</RFDDOption>
+        <RFDDOption value="🍊Orange">🍊Orange</RFDDOption>
+      </Rfdd>
       </ExampleStyle>
       <div>
         <b>value: {value}</b>

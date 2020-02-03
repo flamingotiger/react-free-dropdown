@@ -4,25 +4,25 @@ import { color } from "./common/styles";
 
 type Mode = "dark" | "white";
 
-interface FDDType {
+interface RFDDType {
   className?: string;
   style?: CSSProperties;
 }
 
-interface FDDPropsType extends FDDType {
+interface RFDDPropsType extends RFDDType {
   value?: string;
-  children?: React.ReactElement<FDDOptionType, "FDDOption">[];
+  children?: React.ReactElement<RFDDOptionType, "RFDDOption">[];
   onChange?: (value: string) => void;
   mode?: Mode;
 }
 
-interface FDDOptionType extends FDDType {
+interface RFDDOptionType extends RFDDType {
   value?: string | number;
   onChange?: (value: string) => void;
   children: React.ReactNode;
 }
 
-const FDDOptionStyle = {
+const RFDDOptionStyle = {
   Wrapper: styled.div`
     width: 100%;
     cursor: pointer;
@@ -41,30 +41,29 @@ const FDDOptionStyle = {
   `
 };
 
-interface FDDSelectStyle {
+interface RFDDSelectStyle {
   mode: Mode;
   isValue: boolean;
 }
 
-const FDDSelectStyle = {
+const RFDDSelectStyle = {
   Wrapper: styled.div`
     display: flex;
     align-items: center;
     cursor: pointer;
     padding: 4px 4px 4px 8px;
     box-sizing: border-box;
-    background: ${({ mode }: FDDSelectStyle) =>
+    background: ${({ mode }: RFDDSelectStyle) =>
       mode === "white" ? color.white : color.dark};
-    color: ${({ mode }: FDDSelectStyle) =>
+    color: ${({ mode }: RFDDSelectStyle) =>
       mode === "white" ? color.darkGray : color.opacityLightGray};
-
     transition: color 0.3s;
     &:hover {
-      color: ${({ mode }: FDDSelectStyle) =>
+      color: ${({ mode }: RFDDSelectStyle) =>
         mode === "white" ? color.black : color.white};
       svg {
         rect {
-          fill: ${({ mode }: FDDSelectStyle) =>
+          fill: ${({ mode }: RFDDSelectStyle) =>
             mode === "white" ? color.black : color.white};
         }
       }
@@ -72,7 +71,7 @@ const FDDSelectStyle = {
     font-size: 12px;
     line-height: 12px;
     border: 1px solid
-      ${({ mode }: FDDSelectStyle) =>
+      ${({ mode }: RFDDSelectStyle) =>
         mode === "white" ? color.gray : color.dark};
     width: 100%;
     min-width: 40px;
@@ -92,13 +91,13 @@ const FDDSelectStyle = {
   `
 };
 
-interface FDDStyleProps {
+interface RFDDStyleProps {
   mode: Mode;
   width: number;
   isFocus: boolean;
 }
 
-const FDDStyle = {
+const RFDDStyle = {
   Wrapper: styled.div`
     display: inline-block;
     position: relative;
@@ -113,7 +112,7 @@ const FDDStyle = {
     top: 100%;
     margin: 0;
     padding: 0;
-    ${({ mode }: FDDStyleProps) => {
+    ${({ mode }: RFDDStyleProps) => {
       if (mode === "white") {
         return `
                 background: white;
@@ -160,19 +159,19 @@ const FDDStyle = {
                 `;
       }
     }};
-    width: ${({ width }: FDDStyleProps) => `${width}px`};
+    width: ${({ width }: RFDDStyleProps) => `${width}px`};
     box-sizing: border-box;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 100;
     transition: max-height 0.2s;
-    max-height: ${({ isFocus }: FDDStyleProps) => (isFocus ? "100px" : "0")};
-    ${({ isFocus }: FDDStyleProps) =>
+    max-height: ${({ isFocus }: RFDDStyleProps) => (isFocus ? "100px" : "0")};
+    ${({ isFocus }: RFDDStyleProps) =>
       isFocus ? "overflow-y: auto" : "overflow: auto"};
   `
 };
 
-export const FDDOption: React.FC<FDDOptionType> = props => {
+export const RFDDOption: React.FC<RFDDOptionType> = props => {
   const { value, children, onChange } = props;
   let valueToString = "";
   if (value) {
@@ -183,14 +182,14 @@ export const FDDOption: React.FC<FDDOptionType> = props => {
     }
   }
   return (
-    <FDDOptionStyle.Wrapper onClick={() => onChange && onChange(valueToString)}>
+    <RFDDOptionStyle.Wrapper onClick={() => onChange && onChange(valueToString)}>
       {children}
-    </FDDOptionStyle.Wrapper>
+    </RFDDOptionStyle.Wrapper>
   );
 };
-FDDOption.displayName = "FDDOption";
+RFDDOption.displayName = "RFDDOption";
 
-const Fdd: React.FC<FDDPropsType> = props => {
+const Rfdd: React.FC<RFDDPropsType> = props => {
   const { children, className, style, onChange, value, mode = "white" } = props;
   const [noOnChangeValue, setNoOnChangeValue] = React.useState<string>("");
   const [isFocus, setIsFocus] = React.useState<boolean>(false);
@@ -212,8 +211,8 @@ const Fdd: React.FC<FDDPropsType> = props => {
   };
   const isValue = value !== "" || noOnChangeValue !== "";
   return (
-    <FDDStyle.Wrapper tabIndex={1} onBlur={() => setIsFocus(false)}>
-      <FDDSelectStyle.Wrapper
+    <RFDDStyle.Wrapper tabIndex={1} onBlur={() => setIsFocus(false)}>
+      <RFDDSelectStyle.Wrapper
         className={className}
         style={style}
         onClick={() => setIsFocus(prevState => !prevState)}
@@ -222,7 +221,7 @@ const Fdd: React.FC<FDDPropsType> = props => {
         ref={selectEl}
       >
         {value ? value : noOnChangeValue}
-        <FDDSelectStyle.Svg
+        <RFDDSelectStyle.Svg
           width="10px"
           height="10px"
           viewBox="0 0 10 10"
@@ -231,19 +230,19 @@ const Fdd: React.FC<FDDPropsType> = props => {
         >
           <rect x="0" y="0" width="1" height="10" />
           <rect x="0" y="9" width="10" height="1" />
-        </FDDSelectStyle.Svg>
-      </FDDSelectStyle.Wrapper>
+        </RFDDSelectStyle.Svg>
+      </RFDDSelectStyle.Wrapper>
       {children && (
-        <FDDStyle.Ul width={selectWidth} isFocus={isFocus} mode={mode}>
+        <RFDDStyle.Ul width={selectWidth} isFocus={isFocus} mode={mode}>
           {React.Children.map(
             children,
             (
-              child: React.ReactElement<FDDOptionType> & {
+              child: React.ReactElement<RFDDOptionType> & {
                 type: { displayName?: string };
               }
             ) => {
-              // Render when FDDOption is enabled only
-              if (child.type.displayName === "FDDOption") {
+              // Render when RFDDOption is enabled only
+              if (child.type.displayName === "RFDDOption") {
                 return React.cloneElement(child, {
                   onChange: existOrNoOnChange
                 });
@@ -252,10 +251,10 @@ const Fdd: React.FC<FDDPropsType> = props => {
               }
             }
           )}
-        </FDDStyle.Ul>
+        </RFDDStyle.Ul>
       )}
-    </FDDStyle.Wrapper>
+    </RFDDStyle.Wrapper>
   );
 };
 
-export default Fdd;
+export default Rfdd;
