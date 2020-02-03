@@ -56,14 +56,14 @@ const RFDDSelectStyle = {
     background: ${({ mode }: RFDDSelectStyle) =>
       mode === "white" ? color.white : color.dark};
     color: ${({ mode }: RFDDSelectStyle) =>
-      mode === "white" ? color.darkGray : color.opacityLightGray};
+      mode === "white" ? color.opacityDarkGray : color.opacityLightGray};
     transition: color 0.3s;
     &:hover {
       color: ${({ mode }: RFDDSelectStyle) =>
         mode === "white" ? color.black : color.white};
       svg {
-        rect {
-          fill: ${({ mode }: RFDDSelectStyle) =>
+        path {
+          stroke: ${({ mode }: RFDDSelectStyle) =>
             mode === "white" ? color.black : color.white};
         }
       }
@@ -82,11 +82,13 @@ const RFDDSelectStyle = {
     position: absolute;
     right: 10px;
     top: 50%;
-    margin-top: -7.5px;
-    transform: rotate(-45deg);
-    rect {
-      fill: ${({ mode }: { mode: Mode }) =>
-        mode === "white" ? color.darkGray : color.opacityLightGray};
+    margin-top: ${({ isFocus }: { isFocus: boolean; mode: Mode }) =>
+      isFocus ? "-2px": "-7.5px"};
+    transform: ${({ isFocus }: { isFocus: boolean; mode: Mode }) =>
+      isFocus ? "rotate(135deg)": "rotate(-45deg)"};
+    path {
+      stroke: ${({ mode }: { isFocus: boolean; mode: Mode }) =>
+        mode === "white" ? color.opacityDarkGray : color.opacityLightGray};
     }
   `
 };
@@ -103,6 +105,7 @@ const RFDDStyle = {
     position: relative;
     box-sizing: border-box;
     font-weight: lighter;
+    outline: none;
   `,
   Ul: styled.ul`
     display: block;
@@ -114,8 +117,7 @@ const RFDDStyle = {
     padding: 0;
     ${({ mode }: RFDDStyleProps) => {
       if (mode === "white") {
-        return `
-                background: white;
+        return `background-color: ${color.light};
                 color: rgb(100,100,100);
                 &::-webkit-scrollbar{
                   width: 10px;
@@ -134,12 +136,10 @@ const RFDDStyle = {
                   &:hover{
                     background-color: rgb(180,180,180);
                   }
-                }
-                `;
+                }`;
       } else {
-        return `
-                background: ${color.dark};
-                color: white;
+        return `background-color: ${color.dark};
+                color: ${color.white};
                 &::-webkit-scrollbar{
                   width: 10px;
                   padding: 0 2px;
@@ -155,8 +155,7 @@ const RFDDStyle = {
                   &:hover{
                     background-color: rgb(180,180,180);
                   }
-                }
-                `;
+                }`;
       }
     }};
     width: ${({ width }: RFDDStyleProps) => `${width}px`};
@@ -182,7 +181,9 @@ export const RFDDOption: React.FC<RFDDOptionType> = props => {
     }
   }
   return (
-    <RFDDOptionStyle.Wrapper onClick={() => onChange && onChange(valueToString)}>
+    <RFDDOptionStyle.Wrapper
+      onClick={() => onChange && onChange(valueToString)}
+    >
       {children}
     </RFDDOptionStyle.Wrapper>
   );
@@ -227,9 +228,9 @@ const Rfdd: React.FC<RFDDPropsType> = props => {
           viewBox="0 0 10 10"
           xmlns="http://www.w3.org/2000/svg"
           mode={mode}
+          isFocus={isFocus}
         >
-          <rect x="0" y="0" width="1" height="10" />
-          <rect x="0" y="9" width="10" height="1" />
+          <path d="M0 0 V 10 H 10" fill="none" />
         </RFDDSelectStyle.Svg>
       </RFDDSelectStyle.Wrapper>
       {children && (
