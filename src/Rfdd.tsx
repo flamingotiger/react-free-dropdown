@@ -172,7 +172,11 @@ export const RFDDOption: React.FC<RFDDOptionType> = props => {
 		valueToString = children;
 	}
 	return (
-		<RFDDOptionStyle.Wrapper key={`option${index}`} data-testid={`option${index}`} onClick={(): void => onChange && onChange(valueToString)}>
+		<RFDDOptionStyle.Wrapper
+			key={`option${index}`}
+			data-testid={`option${index}`}
+			onClick={(): void => onChange && onChange(valueToString)}
+		>
 			{children}
 		</RFDDOptionStyle.Wrapper>
 	);
@@ -201,7 +205,7 @@ const Rfdd: React.FC<RFDDPropsType> = props => {
 	};
 	const isValue = value !== '' || noOnChangeValue !== '';
 	return (
-		<RFDDStyle.Wrapper tabIndex={0} onBlur={(): void => setIsFocus(false)} data-testid="rfdd">
+		<RFDDStyle.Wrapper tabIndex={0} onBlur={(): void => setIsFocus(false)} data-testid="rfdd" className="rfdd">
 			<RFDDSelectStyle.Wrapper
 				className={className}
 				style={style}
@@ -209,6 +213,7 @@ const Rfdd: React.FC<RFDDPropsType> = props => {
 				isValue={isValue}
 				mode={mode}
 				ref={selectEl}
+				id="select"
 				data-testid="select"
 			>
 				<span data-testid="select-text">{value || noOnChangeValue}</span>
@@ -224,18 +229,20 @@ const Rfdd: React.FC<RFDDPropsType> = props => {
 				</RFDDSelectStyle.Svg>
 			</RFDDSelectStyle.Wrapper>
 			{children && (
-				<RFDDStyle.Ul width={selectWidth} isFocus={isFocus} mode={mode} data-testid="list">
+				<RFDDStyle.Ul width={selectWidth} isFocus={isFocus} mode={mode} id="list" data-testid="list">
 					{React.Children.map(
 						children,
 						(
 							child: React.ReactElement<RFDDOptionType> & {
 								type: { displayName?: string };
-							}, index: number
+							},
+							index: number
 						) => {
 							// Render when RFDDOption is enabled only
 							if (child.type.displayName === 'RFDDOption') {
 								return React.cloneElement(child, {
-									onChange: existOrNoOnChange, index
+									onChange: existOrNoOnChange,
+									index
 								});
 							}
 							return null;

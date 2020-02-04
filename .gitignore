@@ -1,3 +1,30 @@
+# package
+node_modules/
+
+# MacOS
 .DS_Store
-node_modules
+
+# generated files
+dist/
+
+# generated site
+site/
+
+# coverage reports
+coverage/
+
+# test reports
+test-reports/
+
+# test outputs
+cypress/videos/
+cypress/screenshots/
+
+# logs
+yarn-error.log
+npm-debug.log
+npm-debug.log.*
+
+# editors
 .idea
+.vscode
