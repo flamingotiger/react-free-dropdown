@@ -7,3 +7,17 @@
 **Easy custom** dropdown list with [`React`](https://facebook.github.io/react/)
 
 </div>
+
+## Getting Started
+
+```typescript jsx
+import React from 'react';
+import Rfdd, { RFDDOption } from 'Rfdd';
+
+const ReactFreeDropDown:React.FC = () => <Rfdd>
+    <RFDDOption value="Apple">Apple</RFDDOption>
+    <RFDDOption value="Grape">Grape</RFDDOption>    
+</Rfdd>
+
+export default ReactFreeDropDown;
+```

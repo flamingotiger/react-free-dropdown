@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Rfdd/> matches snapshot 1`] = `
+<div>
+  <div
+    class="sc-bxivhb ejMuHF"
+    data-testid="rfdd"
+    tabindex="0"
+  >
+    <div
+      class="sc-bwzfXH bzifxd"
+      data-testid="select"
+      mode="white"
+    >
+      <span
+        data-testid="select-text"
+      />
+      <svg
+        class="sc-htpNat bCXcnU"
+        height="10px"
+        mode="white"
+        viewBox="0 0 10 10"
+        width="10px"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 0 V 10 H 10"
+          fill="none"
+        />
+      </svg>
+    </div>
+    <ul
+      class="sc-ifAKCX gYNLWL"
+      data-testid="list"
+      mode="white"
+      width="0"
+    >
+      <div
+        class="sc-bdVaJa fcOLkS"
+        data-testid="option0"
+      >
+        Apple
+      </div>
+      <div
+        class="sc-bdVaJa fcOLkS"
+        data-testid="option1"
+      >
+        Carrot
+      </div>
+    </ul>
+  </div>
+</div>
+`;
