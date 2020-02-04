@@ -205,7 +205,7 @@ const Rfdd: React.FC<RFDDPropsType> = props => {
 	};
 	const isValue = value !== '' || noOnChangeValue !== '';
 	return (
-		<RFDDStyle.Wrapper tabIndex={0} onBlur={(): void => setIsFocus(false)} data-testid="rfdd">
+		<RFDDStyle.Wrapper tabIndex={0} onBlur={(): void => setIsFocus(false)} data-testid="rfdd" className="rfdd">
 			<RFDDSelectStyle.Wrapper
 				className={className}
 				style={style}
