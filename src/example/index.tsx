@@ -15,7 +15,7 @@ const Example: React.FC = () => {
 	return (
 		<>
 			<p>
-				<img src="../../public/RFDD_logo.png" alt="react free fropdown logo" />
+				<img src="../assets/RFDD_logo.png" alt="react free fropdown logo" />
 			</p>
 			<h1>Free Drop Down</h1>
 			<ExampleStyle>

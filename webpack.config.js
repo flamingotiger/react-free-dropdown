@@ -2,8 +2,8 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const srcPath = path.resolve(__dirname, 'src'); // src 경로
-const Dev = process.env.NODE_ENV === 'development'; // 개발자 모드
+const srcPath = path.resolve(__dirname, 'src');
+const Dev = process.env.NODE_ENV === 'development';
 const webpackDevServer = Dev
 	? {
 			devServer: {
@@ -12,7 +12,7 @@ const webpackDevServer = Dev
 				port: 5000
 			}
 	  }
-	: {}; // webpack dev server 포트설정
+	: {};
 
 const splitChunk = !Dev
 	? {}
@@ -28,34 +28,31 @@ const splitChunk = !Dev
 				automaticNameMaxLength: 30
 			}
 	  };
-// 청크 최적화 비동기로 6개 리미트
-// 일반적으로 브라우저는 동시 6개까지 request 할 수 있음
 
 module.exports = {
-	entry: './src/index.tsx', // 가져올 파일
+	entry: './src/index.tsx',
 	output: {
 		filename: Dev ? '[name].js' : '[name].[chunkhash].js',
-		path: path.resolve(`${__dirname}build`)
-	}, // 빌드후 결과물 파일
+		path: path.resolve(__dirname, 'build')
+	},
 	...webpackDevServer,
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js', '.jsx']
 	},
-	mode: Dev ? 'development' : 'production', // 프로덕션모드, 개발자모드
+	mode: Dev ? 'development' : 'production',
 	module: {
-		// 로더
 		rules: [
 			{
-				test: /\.(js|jsx)$/, // 로더 적용할 대상
-				exclude: /node_modules/, // 로더 제외 설정
-				include: srcPath, // 일정경로에서만 로더 적용
-				use: ['babel-loader', 'stylelint-custom-processor-loader'] // 바벨로더 및 스타일드 컴포넌트 로더/린트
+				test: /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				include: srcPath,
+				use: ['babel-loader', 'stylelint-custom-processor-loader']
 			},
 			{
 				test: /\.html$/,
 				use: [
 					{
-						loader: 'html-loader', // html 로더
+						loader: 'html-loader',
 						options: { minimize: true }
 					}
 				]
@@ -65,19 +62,21 @@ module.exports = {
 				exclude: /node_modules/,
 				include: srcPath,
 				loader: 'ts-loader'
+			},
+			{
+				test: /\.(jpe?g|ico|gif|png|svg)$/,
+				loader: ['file-loader', 'url-loader']
 			}
 		]
 	},
 	plugins: [
 		new HtmlWebPackPlugin({
-			// html 자동생성 플러그인
 			template: './public/index.html',
 			filename: 'index.html'
 		}),
-		new CleanWebpackPlugin() // 사용하지 않는 빌드 파일 자동 삭제
+		new CleanWebpackPlugin()
 	],
 	optimization: {
-		// 청크 최적화
 		...splitChunk
 	}
 };
