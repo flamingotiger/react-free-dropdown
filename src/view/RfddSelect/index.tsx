@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Mode, RfddSelectType } from 'types';
-import color from 'common/styles';
+import color from '../../common/styles';
 import { useDispatch } from 'react-redux';
-import { isLightMode } from 'common/utils';
+import { isLightMode } from '../../common/utils';
 import { getSelectWidth } from '../../state/get-layout';
 
 interface RfddSelectStyleType {

@@ -1,5 +1,5 @@
 import { applyMiddleware, compose, createStore, Store, Middleware, CombinedState } from 'redux';
-import rootReducer from '../state/reducers';
+import rootReducer from './reducers';
 
 const isDev = process.env.NODE_ENV === 'development';
 const configureStore = (): Store<CombinedState<any>, any> => {
@@ -14,8 +14,8 @@ const configureStore = (): Store<CombinedState<any>, any> => {
 	// Hot reload reducers:
 	// https://github.com/reactjs/react-redux/releases/tag/v2.0.0
 	if (isDev && module.hot) {
-		module.hot.accept('reducers', () => {
-			const nextRootReducer = require('reducers').default;
+		module.hot.accept('./reducers', () => {
+			const nextRootReducer = require('./reducers').default;
 			// eslint-disable-next-line @typescript-eslint/no-use-before-define
 			store.replaceReducer(nextRootReducer);
 		});
