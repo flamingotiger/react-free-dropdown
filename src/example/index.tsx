@@ -15,9 +15,6 @@ const Example: React.FC = () => {
 	const [value, setValue] = React.useState<string>('');
 	return (
 		<>
-			<p>
-				<img src="../assets/RFDD_logo.png" alt="react free fropdown logo" />
-			</p>
 			<h1>Free Drop Down</h1>
 			<ExampleStyle>
 				<Rfdd

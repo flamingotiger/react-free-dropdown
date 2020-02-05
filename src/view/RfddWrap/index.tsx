@@ -106,9 +106,9 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 				isValue={isValue}
 				mode={mode}
 				value={value || noOnChangeValue}
-				isFocus
+				isFocus={isFocus}
 			/>
-			{children && (
+			{children && children.length > 0 && (
 				<RfddStyle.Ul width={selectWidth} isFocus={isFocus} mode={mode} id="list" data-testid="list">
 					{React.Children.map(
 						children,
@@ -119,7 +119,7 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 							index: number
 						) => {
 							// Render when RfddOption is enabled only
-							if (child.type.displayName === 'RFDDOption') {
+							if (child.type.displayName === 'RfddOption') {
 								return React.cloneElement(child, {
 									onChange: existOrNoOnChange,
 									index

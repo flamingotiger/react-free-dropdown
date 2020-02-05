@@ -6,7 +6,9 @@ import { RfddPropsType } from '../../types';
 const Rfdd: React.FC<RfddPropsType> = props => {
 	return (
 		<StoreProvider>
-			<RfddWrap {...props} />
+			<RfddWrap {...props}>
+				{props.children}
+			</RfddWrap>
 		</StoreProvider>
 	);
 };
