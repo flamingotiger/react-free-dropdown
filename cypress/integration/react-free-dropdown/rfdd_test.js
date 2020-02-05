@@ -2,7 +2,7 @@ describe('My First Test', () => {
 	it('successfully loads', () => {
 		cy.visit('/');
 	});
-	it('select white mode drop down', () => {
+	it('select light mode drop down', () => {
 		cy.get('.rfdd')
 			.eq(0)
 			.as('firstDropDown');
