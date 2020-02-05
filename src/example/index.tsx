@@ -23,7 +23,7 @@ const Example: React.FC = () => {
 					onChange={(optionValue: string): void => setValue(optionValue)}
 					value={value}
 					style={{ width: '120px', height: '30px' }}
-					mode="white"
+					mode="light"
 				>
 					<RFDDOption value="🍎Apple">
 						<span role="img" aria-label="Apple">

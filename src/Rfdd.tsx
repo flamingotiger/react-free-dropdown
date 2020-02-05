@@ -2,7 +2,7 @@ import React, { CSSProperties, useEffect } from 'react';
 import styled from 'styled-components';
 import color from './common/styles';
 
-type Mode = 'dark' | 'white';
+type Mode = 'dark' | 'light';
 
 interface RFDDType {
 	className?: string;
@@ -54,21 +54,21 @@ const RFDDSelectStyle = {
 		cursor: pointer;
 		padding: 4px 4px 4px 8px;
 		box-sizing: border-box;
-		background: ${({ mode }: RFDDSelectStyle): string => (mode === 'white' ? color.white : color.dark)};
+		background: ${({ mode }: RFDDSelectStyle): string => (mode === 'light' ? color.white : color.dark)};
 		color: ${({ mode }: RFDDSelectStyle): string =>
-			mode === 'white' ? color.opacityDarkGray : color.opacityLightGray};
+			mode === 'light' ? color.opacityDarkGray : color.opacityLightGray};
 		transition: color 0.3s;
 		&:hover {
-			color: ${({ mode }: RFDDSelectStyle): string => (mode === 'white' ? color.black : color.white)};
+			color: ${({ mode }: RFDDSelectStyle): string => (mode === 'light' ? color.black : color.white)};
 			svg {
 				path {
-					stroke: ${({ mode }: RFDDSelectStyle): string => (mode === 'white' ? color.black : color.white)};
+					stroke: ${({ mode }: RFDDSelectStyle): string => (mode === 'light' ? color.black : color.white)};
 				}
 			}
 		}
 		font-size: 12px;
 		line-height: 12px;
-		border: 1px solid ${({ mode }: RFDDSelectStyle): string => (mode === 'white' ? color.gray : color.dark)};
+		border: 1px solid ${({ mode }: RFDDSelectStyle): string => (mode === 'light' ? color.gray : color.dark)};
 		width: 100%;
 		min-width: 40px;
 		min-height: 20px;
@@ -83,7 +83,7 @@ const RFDDSelectStyle = {
 			isFocus ? 'rotate(135deg)' : 'rotate(-45deg)'};
 		path {
 			stroke: ${({ mode }: { isFocus: boolean; mode: Mode }): string =>
-				mode === 'white' ? color.opacityDarkGray : color.opacityLightGray};
+				mode === 'light' ? color.opacityDarkGray : color.opacityLightGray};
 		}
 	`
 };
@@ -111,7 +111,7 @@ const RFDDStyle = {
 		margin: 0;
 		padding: 0;
 		${({ mode }: RFDDStyleProps): string => {
-			if (mode === 'white') {
+			if (mode === 'light') {
 				return `background-color: ${color.light};
                 color: rgb(100,100,100);
                 &::-webkit-scrollbar{
@@ -184,7 +184,7 @@ export const RFDDOption: React.FC<RFDDOptionType> = props => {
 RFDDOption.displayName = 'RFDDOption';
 
 const Rfdd: React.FC<RFDDPropsType> = props => {
-	const { children, className, style, onChange, value, mode = 'white' } = props;
+	const { children, className, style, onChange, value, mode = 'light' } = props;
 	const [noOnChangeValue, setNoOnChangeValue] = React.useState<string>('');
 	const [isFocus, setIsFocus] = React.useState<boolean>(false);
 	const [selectWidth, setSelectWidth] = React.useState<number>(0);
