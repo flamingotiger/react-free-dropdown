@@ -2,26 +2,26 @@ import React, { CSSProperties } from 'react';
 
 export type Mode = 'dark' | 'light';
 
-export interface RFDDType {
+export interface RfddType {
 	className?: string;
 	style?: CSSProperties;
 }
 
-export interface RFDDPropsType extends RFDDType {
+export interface RfddPropsType extends RfddType {
 	value?: string;
-	children?: React.ReactElement<RFDDOptionType, 'RFDDOption'>[];
+	children?: React.ReactElement<RfddOptionType, 'RfddOption'>[];
 	onChange?: (value: string) => void;
 	mode?: Mode;
 }
 
-export interface RFDDOptionType extends RFDDType {
+export interface RfddOptionType extends RfddType {
 	value?: string | number;
 	onChange?: (value: string) => void;
 	children: React.ReactNode;
 	index?: number;
 }
 
-export interface RFDDSelectType extends RFDDType {
+export interface RfddSelectType extends RfddType {
 	setIsFocus: () => void;
 	isValue: boolean;
 	mode: Mode;

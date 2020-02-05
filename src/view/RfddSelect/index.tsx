@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { Mode, RFDDSelectType } from 'types';
+import { Mode, RfddSelectType } from 'types';
 import color from 'common/styles';
 import { useDispatch } from 'react-redux';
 import { getSelectWidth } from 'state/get-layout';
 import { isLightMode } from 'common/utils';
 
-interface RFDDSelectStyleType {
+interface RfddSelectStyleType {
 	mode: Mode;
 	isValue: boolean;
 }
@@ -16,28 +16,28 @@ interface RFDDSvgStyleType {
 	isFocus: boolean;
 }
 
-const RFDDSelectStyle = {
+const RfddSelectStyle = {
 	Wrapper: styled.div`
 		display: flex;
 		align-items: center;
 		cursor: pointer;
 		padding: 4px 4px 4px 8px;
 		box-sizing: border-box;
-		background: ${({ mode }: RFDDSelectStyleType): string => (isLightMode(mode) ? color.white : color.dark)};
-		color: ${({ mode }: RFDDSelectStyleType): string =>
+		background: ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.white : color.dark)};
+		color: ${({ mode }: RfddSelectStyleType): string =>
 			isLightMode(mode) ? color.opacityDarkGray : color.opacityLightGray};
 		transition: color 0.3s;
 		&:hover {
-			color: ${({ mode }: RFDDSelectStyleType): string => (isLightMode(mode) ? color.black : color.white)};
+			color: ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.black : color.white)};
 			svg {
 				path {
-					stroke: ${({ mode }: RFDDSelectStyleType): string => (isLightMode(mode) ? color.black : color.white)};
+					stroke: ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.black : color.white)};
 				}
 			}
 		}
 		font-size: 12px;
 		line-height: 12px;
-		border: 1px solid ${({ mode }: RFDDSelectStyleType): string => (isLightMode(mode) ? color.gray : color.dark)};
+		border: 1px solid ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.gray : color.dark)};
 		width: 100%;
 		min-width: 40px;
 		min-height: 20px;
@@ -56,7 +56,7 @@ const RFDDSelectStyle = {
 	`
 };
 
-export const RFDDSelect: React.FC<RFDDSelectType> = props => {
+export const RfddSelect: React.FC<RfddSelectType> = props => {
 	const { className, style, setIsFocus, isValue, mode, value, isFocus } = props;
 	const selectEl = React.useRef<HTMLDivElement>(null);
 	const dispatch = useDispatch();
@@ -67,7 +67,7 @@ export const RFDDSelect: React.FC<RFDDSelectType> = props => {
 		}
 	}, [selectEl, dispatch]);
 	return (
-		<RFDDSelectStyle.Wrapper
+		<RfddSelectStyle.Wrapper
 			className={className}
 			style={style}
 			onClick={(): void => setIsFocus()}
@@ -78,7 +78,7 @@ export const RFDDSelect: React.FC<RFDDSelectType> = props => {
 			data-testid="select"
 		>
 			<span data-testid="select-text">{value}</span>
-			<RFDDSelectStyle.Svg
+			<RfddSelectStyle.Svg
 				width="10px"
 				height="10px"
 				viewBox="0 0 10 10"
@@ -87,7 +87,7 @@ export const RFDDSelect: React.FC<RFDDSelectType> = props => {
 				isFocus={isFocus}
 			>
 				<path d="M0 0 V 10 H 10" fill="none" />
-			</RFDDSelectStyle.Svg>
-		</RFDDSelectStyle.Wrapper>
+			</RfddSelectStyle.Svg>
+		</RfddSelectStyle.Wrapper>
 	);
 };

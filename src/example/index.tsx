@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Rfdd, { RFDDOption } from '../Rfdd';
+import Rfdd, { RfddOption } from '../index';
 
 const ExampleStyle = styled.div`
 	display: flex;
@@ -25,36 +25,36 @@ const Example: React.FC = () => {
 					style={{ width: '120px', height: '30px' }}
 					mode="light"
 				>
-					<RFDDOption value="🍎Apple">
+					<RfddOption value="🍎Apple">
 						<span role="img" aria-label="Apple">
 							🍎
 						</span>
 						Apple
-					</RFDDOption>
-					<RFDDOption value="🥕Carrot">
+					</RfddOption>
+					<RfddOption value="🥕Carrot">
 						<span role="img" aria-label="Carrot">
 							🥕
 						</span>
 						Carrot
-					</RFDDOption>
-					<RFDDOption value="🍌Banana">
+					</RfddOption>
+					<RfddOption value="🍌Banana">
 						<span role="img" aria-label="Banana">
 							🍌
 						</span>
 						Banana
-					</RFDDOption>
-					<RFDDOption value="🍇Grape">
+					</RfddOption>
+					<RfddOption value="🍇Grape">
 						<span role="img" aria-label="Grape">
 							🍇
 						</span>
 						Grape
-					</RFDDOption>
-					<RFDDOption value="🍊Orange">
+					</RfddOption>
+					<RfddOption value="🍊Orange">
 						<span role="img" aria-label="Orange">
 							🍊
 						</span>
 						Orange
-					</RFDDOption>
+					</RfddOption>
 				</Rfdd>
 				<Rfdd
 					onChange={(optionValue: string): void => setValue(optionValue)}
@@ -62,36 +62,36 @@ const Example: React.FC = () => {
 					style={{ width: '120px', height: '30px' }}
 					mode="dark"
 				>
-					<RFDDOption value="🍎Apple">
+					<RfddOption value="🍎Apple">
 						<span role="img" aria-label="Apple">
 							🍎
 						</span>
 						Apple
-					</RFDDOption>
-					<RFDDOption value="🥕Carrot">
+					</RfddOption>
+					<RfddOption value="🥕Carrot">
 						<span role="img" aria-label="Carrot">
 							🥕
 						</span>
 						Carrot
-					</RFDDOption>
-					<RFDDOption value="🍌Banana">
+					</RfddOption>
+					<RfddOption value="🍌Banana">
 						<span role="img" aria-label="Banana">
 							🍌
 						</span>
 						Banana
-					</RFDDOption>
-					<RFDDOption value="🍇Grape">
+					</RfddOption>
+					<RfddOption value="🍇Grape">
 						<span role="img" aria-label="Grape">
 							🍇
 						</span>
 						Grape
-					</RFDDOption>
-					<RFDDOption value="🍊Orange">
+					</RfddOption>
+					<RfddOption value="🍊Orange">
 						<span role="img" aria-label="Orange">
 							🍊
 						</span>
 						Orange
-					</RFDDOption>
+					</RfddOption>
 				</Rfdd>
 			</ExampleStyle>
 			<div>

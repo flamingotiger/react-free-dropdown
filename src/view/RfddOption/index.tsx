@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { RFDDOptionType } from 'types';
+import { RfddOptionType } from 'types';
 import color from 'common/styles';
 
-const RFDDOptionStyle = {
+const RfddOptionStyle = {
 	Wrapper: styled.div`
 		width: 100%;
 		cursor: pointer;
@@ -21,7 +21,7 @@ const RFDDOptionStyle = {
 		}
 	`
 };
-const RFDDOption: React.FC<RFDDOptionType> = props => {
+const RfddOption: React.FC<RfddOptionType> = props => {
 	const { value, children, onChange, index } = props;
 	let valueToString = '';
 	if (value) {
@@ -30,14 +30,14 @@ const RFDDOption: React.FC<RFDDOptionType> = props => {
 		valueToString = children;
 	}
 	return (
-		<RFDDOptionStyle.Wrapper
+		<RfddOptionStyle.Wrapper
 			key={`option${index}`}
 			data-testid={`option${index}`}
 			onClick={(): void => onChange && onChange(valueToString)}
 		>
 			{children}
-		</RFDDOptionStyle.Wrapper>
+		</RfddOptionStyle.Wrapper>
 	);
 };
-RFDDOption.displayName = 'RFDDOption';
-export default RFDDOption;
+RfddOption.displayName = 'RfddOption';
+export default RfddOption;

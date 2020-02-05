@@ -1,20 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Mode, RFDDPropsType, RFDDOptionType } from 'types';
+import { Mode, RfddPropsType, RfddOptionType } from 'types';
 import color from 'common/styles';
 import StoreProvider from 'state/StoreProvider';
 import { useSelector } from 'react-redux';
 import { RootState } from 'state/reducers';
 import { isLightMode } from 'common/utils';
-import { RFDDSelect } from '../RfddSelect';
+import { RfddSelect } from '../RfddSelect';
 
-interface RFDDStyleProps {
+interface RfddStyleProps {
 	mode: Mode;
 	width: number;
 	isFocus: boolean;
 }
 
-const RFDDStyle = {
+const RfddStyle = {
 	Wrapper: styled.div`
 		display: inline-block;
 		position: relative;
@@ -30,7 +30,7 @@ const RFDDStyle = {
 		top: 100%;
 		margin: 0;
 		padding: 0;
-		${({ mode }: RFDDStyleProps): string => {
+		${({ mode }: RfddStyleProps): string => {
 			if (isLightMode(mode)) {
 				return `background-color: ${color.light};
                 color: rgb(100,100,100);
@@ -72,18 +72,18 @@ const RFDDStyle = {
                   }
                 }`;
 		}};
-		width: ${({ width }: RFDDStyleProps): string => `${width}px`};
+		width: ${({ width }: RfddStyleProps): string => `${width}px`};
 		box-sizing: border-box;
 		overflow: hidden;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 		z-index: 100;
 		transition: max-height 0.2s;
-		max-height: ${({ isFocus }: RFDDStyleProps): string => (isFocus ? '100px' : '0')};
-		${({ isFocus }: RFDDStyleProps): string => (isFocus ? 'overflow-y: auto' : 'overflow: hidden')};
+		max-height: ${({ isFocus }: RfddStyleProps): string => (isFocus ? '100px' : '0')};
+		${({ isFocus }: RfddStyleProps): string => (isFocus ? 'overflow-y: auto' : 'overflow: hidden')};
 	`
 };
 
-const Rfdd: React.FC<RFDDPropsType> = props => {
+const Rfdd: React.FC<RfddPropsType> = props => {
 	const { children, className, style, onChange, value, mode = 'light' } = props;
 	const [noOnChangeValue, setNoOnChangeValue] = React.useState<string>('');
 	const [isFocus, setIsFocus] = React.useState<boolean>(false);
@@ -100,8 +100,8 @@ const Rfdd: React.FC<RFDDPropsType> = props => {
 	const isValue = value !== '' || noOnChangeValue !== '';
 	return (
 		<StoreProvider>
-			<RFDDStyle.Wrapper tabIndex={0} onBlur={(): void => setIsFocus(false)} data-testid="rfdd" className="rfdd">
-				<RFDDSelect
+			<RfddStyle.Wrapper tabIndex={0} onBlur={(): void => setIsFocus(false)} data-testid="rfdd" className="rfdd">
+				<RfddSelect
 					className={className}
 					style={style}
 					setIsFocus={() => setIsFocus(prevState => !prevState)}
@@ -111,16 +111,16 @@ const Rfdd: React.FC<RFDDPropsType> = props => {
 					isFocus
 				/>
 				{children && (
-					<RFDDStyle.Ul width={selectWidth} isFocus={isFocus} mode={mode} id="list" data-testid="list">
+					<RfddStyle.Ul width={selectWidth} isFocus={isFocus} mode={mode} id="list" data-testid="list">
 						{React.Children.map(
 							children,
 							(
-								child: React.ReactElement<RFDDOptionType> & {
+								child: React.ReactElement<RfddOptionType> & {
 									type: { displayName?: string };
 								},
 								index: number
 							) => {
-								// Render when RFDDOption is enabled only
+								// Render when RfddOption is enabled only
 								if (child.type.displayName === 'RFDDOption') {
 									return React.cloneElement(child, {
 										onChange: existOrNoOnChange,
@@ -130,9 +130,9 @@ const Rfdd: React.FC<RFDDPropsType> = props => {
 								return null;
 							}
 						)}
-					</RFDDStyle.Ul>
+					</RfddStyle.Ul>
 				)}
-			</RFDDStyle.Wrapper>
+			</RfddStyle.Wrapper>
 		</StoreProvider>
 	);
 };
