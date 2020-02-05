@@ -1,7 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Mode, RFDDPropsType, RFDDOptionType } from 'types';
 import color from 'common/styles';
+import StoreProvider from 'state/StoreProvider';
+import { useSelector } from 'react-redux';
+import { RootState } from 'state/reducers';
+import { isLightMode } from 'common/utils';
 import { RFDDSelect } from '../RfddSelect';
 
 interface RFDDStyleProps {
@@ -27,7 +31,7 @@ const RFDDStyle = {
 		margin: 0;
 		padding: 0;
 		${({ mode }: RFDDStyleProps): string => {
-			if (mode === 'light') {
+			if (isLightMode(mode)) {
 				return `background-color: ${color.light};
                 color: rgb(100,100,100);
                 &::-webkit-scrollbar{
@@ -83,7 +87,7 @@ const Rfdd: React.FC<RFDDPropsType> = props => {
 	const { children, className, style, onChange, value, mode = 'light' } = props;
 	const [noOnChangeValue, setNoOnChangeValue] = React.useState<string>('');
 	const [isFocus, setIsFocus] = React.useState<boolean>(false);
-	const [selectWidth, setSelectWidth] = React.useState<number>(0);
+	const { selectWidth } = useSelector((state: RootState) => state.getLayout);
 
 	const existOrNoOnChange = (optionValue: string): void => {
 		if (onChange) {
@@ -95,39 +99,41 @@ const Rfdd: React.FC<RFDDPropsType> = props => {
 	};
 	const isValue = value !== '' || noOnChangeValue !== '';
 	return (
-		<RFDDStyle.Wrapper tabIndex={0} onBlur={(): void => setIsFocus(false)} data-testid="rfdd" className="rfdd">
-			<RFDDSelect
-				className={className}
-				style={style}
-				setIsFocus={() => setIsFocus(prevState => !prevState)}
-				isValue={isValue}
-				mode={mode}
-				value={value || noOnChangeValue}
-				isFocus
-			/>
-			{children && (
-				<RFDDStyle.Ul width={selectWidth} isFocus={isFocus} mode={mode} id="list" data-testid="list">
-					{React.Children.map(
-						children,
-						(
-							child: React.ReactElement<RFDDOptionType> & {
-								type: { displayName?: string };
-							},
-							index: number
-						) => {
-							// Render when RFDDOption is enabled only
-							if (child.type.displayName === 'RFDDOption') {
-								return React.cloneElement(child, {
-									onChange: existOrNoOnChange,
-									index
-								});
+		<StoreProvider>
+			<RFDDStyle.Wrapper tabIndex={0} onBlur={(): void => setIsFocus(false)} data-testid="rfdd" className="rfdd">
+				<RFDDSelect
+					className={className}
+					style={style}
+					setIsFocus={() => setIsFocus(prevState => !prevState)}
+					isValue={isValue}
+					mode={mode}
+					value={value || noOnChangeValue}
+					isFocus
+				/>
+				{children && (
+					<RFDDStyle.Ul width={selectWidth} isFocus={isFocus} mode={mode} id="list" data-testid="list">
+						{React.Children.map(
+							children,
+							(
+								child: React.ReactElement<RFDDOptionType> & {
+									type: { displayName?: string };
+								},
+								index: number
+							) => {
+								// Render when RFDDOption is enabled only
+								if (child.type.displayName === 'RFDDOption') {
+									return React.cloneElement(child, {
+										onChange: existOrNoOnChange,
+										index
+									});
+								}
+								return null;
 							}
-							return null;
-						}
-					)}
-				</RFDDStyle.Ul>
-			)}
-		</RFDDStyle.Wrapper>
+						)}
+					</RFDDStyle.Ul>
+				)}
+			</RFDDStyle.Wrapper>
+		</StoreProvider>
 	);
 };
 

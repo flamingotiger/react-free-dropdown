@@ -1,2 +1,2 @@
-export { default as Rfdd } from './Rfdd';
-export { default as RfddOption } from './Rfdd';
+export { default as Rfdd } from './view/Rfdd';
+export { default as RfddOption } from './view/RfddOption';

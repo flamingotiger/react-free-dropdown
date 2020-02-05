@@ -2,10 +2,18 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Mode, RFDDSelectType } from 'types';
 import color from 'common/styles';
+import { useDispatch } from 'react-redux';
+import { getSelectWidth } from 'state/get-layout';
+import { isLightMode } from 'common/utils';
 
-interface RFDDSelectStyle {
+interface RFDDSelectStyleType {
 	mode: Mode;
 	isValue: boolean;
+}
+
+interface RFDDSvgStyleType {
+	mode: Mode;
+	isFocus: boolean;
 }
 
 const RFDDSelectStyle = {
@@ -15,21 +23,21 @@ const RFDDSelectStyle = {
 		cursor: pointer;
 		padding: 4px 4px 4px 8px;
 		box-sizing: border-box;
-		background: ${({ mode }: RFDDSelectStyle): string => (mode === 'light' ? color.white : color.dark)};
-		color: ${({ mode }: RFDDSelectStyle): string =>
-			mode === 'light' ? color.opacityDarkGray : color.opacityLightGray};
+		background: ${({ mode }: RFDDSelectStyleType): string => (isLightMode(mode) ? color.white : color.dark)};
+		color: ${({ mode }: RFDDSelectStyleType): string =>
+			isLightMode(mode) ? color.opacityDarkGray : color.opacityLightGray};
 		transition: color 0.3s;
 		&:hover {
-			color: ${({ mode }: RFDDSelectStyle): string => (mode === 'light' ? color.black : color.white)};
+			color: ${({ mode }: RFDDSelectStyleType): string => (isLightMode(mode) ? color.black : color.white)};
 			svg {
 				path {
-					stroke: ${({ mode }: RFDDSelectStyle): string => (mode === 'light' ? color.black : color.white)};
+					stroke: ${({ mode }: RFDDSelectStyleType): string => (isLightMode(mode) ? color.black : color.white)};
 				}
 			}
 		}
 		font-size: 12px;
 		line-height: 12px;
-		border: 1px solid ${({ mode }: RFDDSelectStyle): string => (mode === 'light' ? color.gray : color.dark)};
+		border: 1px solid ${({ mode }: RFDDSelectStyleType): string => (isLightMode(mode) ? color.gray : color.dark)};
 		width: 100%;
 		min-width: 40px;
 		min-height: 20px;
@@ -39,12 +47,11 @@ const RFDDSelectStyle = {
 		position: absolute;
 		right: 10px;
 		top: 50%;
-		margin-top: ${({ isFocus }: { isFocus: boolean; mode: Mode }): string => (isFocus ? '-2px' : '-7.5px')};
-		transform: ${({ isFocus }: { isFocus: boolean; mode: Mode }): string =>
-			isFocus ? 'rotate(135deg)' : 'rotate(-45deg)'};
+		margin-top: ${({ isFocus }: RFDDSvgStyleType): string => (isFocus ? '-2px' : '-7.5px')};
+		transform: ${({ isFocus }: RFDDSvgStyleType): string => (isFocus ? 'rotate(135deg)' : 'rotate(-45deg)')};
 		path {
-			stroke: ${({ mode }: { isFocus: boolean; mode: Mode }): string =>
-				mode === 'light' ? color.opacityDarkGray : color.opacityLightGray};
+			stroke: ${({ mode }: RFDDSvgStyleType): string =>
+				isLightMode(mode) ? color.opacityDarkGray : color.opacityLightGray};
 		}
 	`
 };
@@ -52,12 +59,13 @@ const RFDDSelectStyle = {
 export const RFDDSelect: React.FC<RFDDSelectType> = props => {
 	const { className, style, setIsFocus, isValue, mode, value, isFocus } = props;
 	const selectEl = React.useRef<HTMLDivElement>(null);
+	const dispatch = useDispatch();
 	useEffect(() => {
 		if (selectEl && selectEl.current) {
 			const { width } = selectEl.current.getBoundingClientRect();
-			setSelectWidth(width);
+			dispatch(getSelectWidth(width));
 		}
-	}, [selectEl]);
+	}, [selectEl, dispatch]);
 	return (
 		<RFDDSelectStyle.Wrapper
 			className={className}
