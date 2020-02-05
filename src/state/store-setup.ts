@@ -1,5 +1,5 @@
 import { applyMiddleware, compose, createStore, Store, Middleware, CombinedState } from 'redux';
-import rootReducer, { RootState } from 'state/reducers';
+import rootReducer from '../state/reducers';
 
 const isDev = process.env.NODE_ENV === 'development';
 const configureStore = (): Store<CombinedState<any>, any> => {

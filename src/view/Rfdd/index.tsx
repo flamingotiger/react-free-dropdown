@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Mode, RfddPropsType, RfddOptionType } from 'types';
-import color from 'common/styles';
-import StoreProvider from 'state/StoreProvider';
 import { useSelector } from 'react-redux';
-import { RootState } from 'state/reducers';
-import { isLightMode } from 'common/utils';
+import color from '../../common/styles';
+import StoreProvider from '../../state/StoreProvider';
+import { RootState } from '../../state/reducers';
+import { isLightMode } from '../../common/utils';
 import { RfddSelect } from '../RfddSelect';
 
 interface RfddStyleProps {

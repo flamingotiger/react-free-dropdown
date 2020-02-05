@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react';
-import Rfdd, { RFDDOption } from '../Rfdd';
+import Rfdd from '../view/Rfdd';
+import RfddOption from '../view/RfddOption';
 
 afterEach(cleanup);
 
@@ -8,8 +9,8 @@ describe('<Rfdd/>', () => {
 	test('matches snapshot', () => {
 		const { container } = render(
 			<Rfdd>
-				<RFDDOption value="🍎Apple">Apple</RFDDOption>
-				<RFDDOption value="🥕Carrot">Carrot</RFDDOption>
+				<RfddOption value="🍎Apple">Apple</RfddOption>
+				<RfddOption value="🥕Carrot">Carrot</RfddOption>
 			</Rfdd>
 		);
 		expect(container).toMatchSnapshot();
@@ -17,8 +18,8 @@ describe('<Rfdd/>', () => {
 	test('it displays default option items', () => {
 		const { getByTestId } = render(
 			<Rfdd>
-				<RFDDOption value="🍎Apple">Apple</RFDDOption>
-				<RFDDOption value="🥕Carrot">Carrot</RFDDOption>
+				<RfddOption value="🍎Apple">Apple</RfddOption>
+				<RfddOption value="🥕Carrot">Carrot</RfddOption>
 			</Rfdd>
 		);
 		const optionList = getByTestId('list');
@@ -27,8 +28,8 @@ describe('<Rfdd/>', () => {
 	test('shows the props correctly', () => {
 		const { getByText } = render(
 			<Rfdd>
-				<RFDDOption value="🍎Apple">Apple</RFDDOption>
-				<RFDDOption value="🥕Carrot">Carrot</RFDDOption>
+				<RfddOption value="🍎Apple">Apple</RfddOption>
+				<RfddOption value="🥕Carrot">Carrot</RfddOption>
 			</Rfdd>
 		);
 		getByText('Apple');
@@ -37,8 +38,8 @@ describe('<Rfdd/>', () => {
 	test('focus and Blur', () => {
 		const { getByTestId } = render(
 			<Rfdd>
-				<RFDDOption value="🍎Apple">Apple</RFDDOption>
-				<RFDDOption value="🥕Carrot">Carrot</RFDDOption>
+				<RfddOption value="🍎Apple">Apple</RfddOption>
+				<RfddOption value="🥕Carrot">Carrot</RfddOption>
 			</Rfdd>
 		);
 		const select = getByTestId('select');
@@ -52,8 +53,8 @@ describe('<Rfdd/>', () => {
 	test('select options after focus', () => {
 		const { getByTestId } = render(
 			<Rfdd>
-				<RFDDOption value="🍎Apple">Apple</RFDDOption>
-				<RFDDOption value="🥕Carrot">Carrot</RFDDOption>
+				<RfddOption value="🍎Apple">Apple</RfddOption>
+				<RfddOption value="🥕Carrot">Carrot</RfddOption>
 			</Rfdd>
 		);
 		const select = getByTestId('select');

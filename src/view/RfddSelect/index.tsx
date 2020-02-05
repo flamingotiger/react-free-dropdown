@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { Mode, RfddSelectType } from 'types';
 import color from 'common/styles';
 import { useDispatch } from 'react-redux';
-import { getSelectWidth } from 'state/get-layout';
 import { isLightMode } from 'common/utils';
+import { getSelectWidth } from '../../state/get-layout';
 
 interface RfddSelectStyleType {
 	mode: Mode;

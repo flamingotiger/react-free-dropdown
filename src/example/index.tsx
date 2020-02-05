@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Rfdd, { RfddOption } from '../index';
+import Rfdd from '../view/Rfdd';
+import RfddOption from '../view/RfddOption';
 
 const ExampleStyle = styled.div`
 	display: flex;
