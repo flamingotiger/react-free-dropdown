@@ -17,9 +17,11 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm run build
       - run:
-          name: Prettier and esLint
+          name: project build
+          command: npm run build
+      - run:
+          name: prettier and esLint
           command: npm run validate
       - run:
           name: stylelint
