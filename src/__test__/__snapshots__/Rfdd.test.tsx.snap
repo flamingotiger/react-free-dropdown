@@ -8,7 +8,7 @@ exports[`<Rfdd/> matches snapshot 1`] = `
     tabindex="0"
   >
     <div
-      class="sc-bdVaJa jHlHmm"
+      class="sc-bdVaJa jCoEpt"
       data-testid="select"
       id="select"
       mode="light"
@@ -17,7 +17,7 @@ exports[`<Rfdd/> matches snapshot 1`] = `
         data-testid="select-text"
       />
       <svg
-        class="sc-bwzfXH jeaMgO"
+        class="sc-bwzfXH cAJDsR"
         height="10px"
         mode="light"
         viewBox="0 0 10 10"
