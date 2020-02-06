@@ -6,6 +6,7 @@ node_modules/
 
 # generated files
 dist/
+build/
 
 # generated site
 site/
