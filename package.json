@@ -34,7 +34,7 @@
   "bugs": {
     "url": "https://github.com/flamingotiger/react-free-dropdown/issues"
   },
-  "homepage": "https://github.com/flamingotiger/react-free-dropdownk#readme",
+  "homepage": "https://github.com/flamingotiger/react-free-dropdown#readme",
   "dependencies": {
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^9.4.0",
