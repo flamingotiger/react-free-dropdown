@@ -10,7 +10,7 @@ describe('drop-down-basic', () => {
 	it('select light mode sidebar item', () => {
 		cy.get('#explorerdrop-down-basic--light-mode').click();
 	});
-	it('select dark mode drop down', () => {
+	it('select light mode drop down', () => {
 		cy.get('#storybook-preview-iframe').then($iframe => {
 			const $body = $iframe.contents().find('body');
 			const optionSelect = name => {
@@ -32,7 +32,7 @@ describe('drop-down-basic', () => {
 	it('select dark mode sidebar item', () => {
 		cy.get('#explorerdrop-down-basic--dark-mode').click();
 	});
-	it('select light mode drop down', () => {
+	it('select dark mode drop down', () => {
 		cy.get('#storybook-preview-iframe').then($iframe => {
 			const $body = $iframe.contents().find('body');
 			const optionSelect = name => {
