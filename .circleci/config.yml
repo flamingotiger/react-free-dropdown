@@ -32,6 +32,7 @@ jobs:
           command: npm run test
 workflows:
   version: 2
-    build:
-      jobs:
-        - build
+  build:
+    jobs:
+      # 위에서 작성한 job명칭을 입력한다.
+      - build
