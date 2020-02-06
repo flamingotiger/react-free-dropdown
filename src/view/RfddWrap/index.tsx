@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Mode, RfddPropsType, RfddOptionType } from 'types';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import color from '../../common/styles';
 import { RootState } from '../../state/reducers';
 import { isLightMode } from '../../common/utils';
 import { RfddSelect } from '../RfddSelect';
+import { setOnBlur } from '../../state/status-change';
 
 interface RfddStyleProps {
 	mode: Mode;
@@ -84,9 +85,9 @@ const RfddStyle = {
 
 const RfddWrap: React.FC<RfddPropsType> = props => {
 	const { children, className, style, onChange, value, mode = 'light' } = props;
+	const dispatch = useDispatch();
 	const [noOnChangeValue, setNoOnChangeValue] = React.useState<string>('');
-	const [isFocus, setIsFocus] = React.useState<boolean>(false);
-	const { selectWidth } = useSelector((state: RootState) => state.getLayout);
+	const [{ selectWidth }, { isFocus }] = useSelector((state: RootState) => [state.getLayout, state.statusChange]);
 
 	const existOrNoOnChange = (optionValue: string): void => {
 		if (onChange) {
@@ -94,20 +95,13 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 		} else {
 			setNoOnChangeValue(optionValue);
 		}
-		setIsFocus(false);
+		dispatch(setOnBlur());
 	};
+
 	const isValue = value !== '' || noOnChangeValue !== '';
 	return (
-		<RfddStyle.Wrapper tabIndex={0} onBlur={(): void => setIsFocus(false)} data-testid="rfdd" className="rfdd">
-			<RfddSelect
-				className={className}
-				style={style}
-				setIsFocus={() => setIsFocus(prevState => !prevState)}
-				isValue={isValue}
-				mode={mode}
-				value={value || noOnChangeValue}
-				isFocus={isFocus}
-			/>
+		<RfddStyle.Wrapper tabIndex={0} onBlur={() => dispatch(setOnBlur())} data-testid="rfdd" className="rfdd">
+			<RfddSelect className={className} style={style} isValue={isValue} mode={mode} value={value || noOnChangeValue} />
 			{children && children.length > 0 && (
 				<RfddStyle.Ul width={selectWidth} isFocus={isFocus} mode={mode} id="list" data-testid="list">
 					{React.Children.map(

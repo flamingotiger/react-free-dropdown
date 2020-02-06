@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import getLayout from './get-layout';
+import statusChange from './status-change';
 
 const rootReducer = combineReducers({
-	getLayout
+	getLayout,
+	statusChange
 });
 
 export default rootReducer;

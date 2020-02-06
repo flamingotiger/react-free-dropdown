@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Mode, RfddSelectType } from 'types';
+import { useDispatch, useSelector } from 'react-redux';
 import color from '../../common/styles';
-import { useDispatch } from 'react-redux';
 import { isLightMode } from '../../common/utils';
 import { getSelectWidth } from '../../state/get-layout';
+import { RootState } from '../../state/reducers';
+import { setIsFocus, StatusChangeActionType } from '../../state/status-change';
 
 interface RfddSelectStyleType {
 	mode: Mode;
@@ -57,9 +59,11 @@ const RfddSelectStyle = {
 };
 
 export const RfddSelect: React.FC<RfddSelectType> = props => {
-	const { className, style, setIsFocus, isValue, mode, value, isFocus } = props;
+	const { className, style, isValue, mode, value } = props;
 	const selectEl = React.useRef<HTMLDivElement>(null);
 	const dispatch = useDispatch();
+	const { isFocus } = useSelector((state: RootState) => state.statusChange);
+
 	useEffect(() => {
 		if (selectEl && selectEl.current) {
 			const { width } = selectEl.current.getBoundingClientRect();
@@ -70,7 +74,9 @@ export const RfddSelect: React.FC<RfddSelectType> = props => {
 		<RfddSelectStyle.Wrapper
 			className={className}
 			style={style}
-			onClick={(): void => setIsFocus()}
+			onClick={(): { type: StatusChangeActionType.IS_FOCUS; payload: { isFocus: boolean } } =>
+				dispatch(setIsFocus(!isFocus))
+			}
 			isValue={isValue}
 			mode={mode}
 			ref={selectEl}

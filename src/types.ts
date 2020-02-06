@@ -22,9 +22,7 @@ export interface RfddOptionType extends RfddType {
 }
 
 export interface RfddSelectType extends RfddType {
-	setIsFocus: () => void;
 	isValue: boolean;
 	mode: Mode;
 	value: number | string;
-	isFocus: boolean;
 }
