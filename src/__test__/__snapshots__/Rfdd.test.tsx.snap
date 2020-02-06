@@ -3,12 +3,12 @@
 exports[`<Rfdd/> matches snapshot 1`] = `
 <div>
   <div
-    class="sc-bxivhb ejMuHF rfdd"
+    class="sc-htpNat gDaegl rfdd"
     data-testid="rfdd"
     tabindex="0"
   >
     <div
-      class="sc-bwzfXH bzifxd"
+      class="sc-bdVaJa jHlHmm"
       data-testid="select"
       id="select"
       mode="light"
@@ -17,7 +17,7 @@ exports[`<Rfdd/> matches snapshot 1`] = `
         data-testid="select-text"
       />
       <svg
-        class="sc-htpNat bCXcnU"
+        class="sc-bwzfXH jeaMgO"
         height="10px"
         mode="light"
         viewBox="0 0 10 10"
@@ -31,20 +31,20 @@ exports[`<Rfdd/> matches snapshot 1`] = `
       </svg>
     </div>
     <ul
-      class="sc-ifAKCX gYNLWL"
+      class="sc-bxivhb fQMNvA"
       data-testid="list"
       id="list"
       mode="light"
       width="0"
     >
       <div
-        class="sc-bdVaJa fcOLkS"
+        class="sc-ifAKCX hIOwLy"
         data-testid="option0"
       >
         Apple
       </div>
       <div
-        class="sc-bdVaJa fcOLkS"
+        class="sc-ifAKCX hIOwLy"
         data-testid="option1"
       >
         Carrot
