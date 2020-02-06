@@ -1,5 +1,6 @@
 import React from 'react';
-import Rfdd, { RFDDOption } from '../../../src/Rfdd';
+import Rfdd from '../../../src/view/Rfdd';
+import RfddOption from '../../../src/view/RfddOption';
 
 const DropDownBasic: React.FC<{ mode: 'light' | 'dark' }> = ({ mode }) => {
 	const [value, setValue] = React.useState<string>('');
@@ -10,36 +11,36 @@ const DropDownBasic: React.FC<{ mode: 'light' | 'dark' }> = ({ mode }) => {
 			style={{ width: '120px', height: '30px' }}
 			mode={mode}
 		>
-			<RFDDOption value="🍎Apple">
+			<RfddOption value="🍎Apple">
 				<span role="img" aria-label="Apple">
 					🍎
 				</span>
 				Apple
-			</RFDDOption>
-			<RFDDOption value="🥕Carrot">
+			</RfddOption>
+			<RfddOption value="🥕Carrot">
 				<span role="img" aria-label="Carrot">
 					🥕
 				</span>
 				Carrot
-			</RFDDOption>
-			<RFDDOption value="🍌Banana">
+			</RfddOption>
+			<RfddOption value="🍌Banana">
 				<span role="img" aria-label="Banana">
 					🍌
 				</span>
 				Banana
-			</RFDDOption>
-			<RFDDOption value="🍇Grape">
+			</RfddOption>
+			<RfddOption value="🍇Grape">
 				<span role="img" aria-label="Grape">
 					🍇
 				</span>
 				Grape
-			</RFDDOption>
-			<RFDDOption value="🍊Orange">
+			</RfddOption>
+			<RfddOption value="🍊Orange">
 				<span role="img" aria-label="Orange">
 					🍊
 				</span>
 				Orange
-			</RFDDOption>
+			</RfddOption>
 		</Rfdd>
 	);
 };

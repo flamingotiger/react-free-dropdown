@@ -12,12 +12,14 @@
 
 ```typescript jsx
 import React from 'react';
-import Rfdd, { RFDDOption } from 'Rfdd';
+import Rfdd, { RfddOption } from 'Rfdd';
 
-const ReactFreeDropDown:React.FC = () => <Rfdd>
-    <RFDDOption value="Apple">Apple</RFDDOption>
-    <RFDDOption value="Grape">Grape</RFDDOption>    
-</Rfdd>
+const App: React.FC = () => {
+  return (<Rfdd>
+    <RfddOption value="Apple">Apple</RfddOption>
+    <RfddOption value="Grape">Grape</RfddOption>    
+  </Rfdd>);
+}
 
-export default ReactFreeDropDown;
+export default App;
 ```
