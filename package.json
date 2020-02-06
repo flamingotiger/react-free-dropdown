@@ -12,7 +12,7 @@
     "test:watch": "npm run test --coverage --coveragePathIgnorePatterns=/debug",
     "test:browser": "cypress open",
     "test:browser:ci": "cypress run",
-    "validate": "npm run format && npm run lint:fix && npm run lint",
+    "validate": "npm run prettier:check && npm run lint:fix && npm run lint:eslint",
     "lint:eslint": "eslint './src/**/*.{ts,tsx,js,jsx}'",
     "lint:fix": "eslint --fix './src/**/*.{ts,tsx,js,jsx}'",
     "prettier:check": "prettier --write --config ./.prettierrc './src/**/*.{ts,tsx}'",
