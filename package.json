@@ -2,8 +2,8 @@
   "name": "react-free-dropdown",
   "version": "1.0.0",
   "description": "customizable drop-down component",
-  "main": "build/main.1cc2189d22fbe986356a.js",
-  "module": "build/main.1cc2189d22fbe986356a.js",
+  "main": "build/main.min.js",
+  "module": "build/main.min.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --hot",
     "build": "cross-env NODE_ENV=production webpack",

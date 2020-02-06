@@ -1,0 +1,7 @@
+webpack.*.js
+.github
+.storybook
+cypress
+node_modules/
+src/__test__
+stories

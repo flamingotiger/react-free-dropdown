@@ -30,23 +30,22 @@ const splitChunk = !Dev
 	  };
 
 module.exports = {
-	entry: './src/index.tsx',
+	entry: './index.ts',
 	output: {
-		filename: Dev ? '[name].js' : '[name].[chunkhash].js',
+		filename: Dev ? '[name].js' : '[name].min.js',
 		path: path.resolve(__dirname, 'build'),
 		library: 'react-free-dropdown',
 		libraryTarget: 'umd',
-		auxiliaryComment: {
-			root: 'Root Comment',
-			commonjs: 'CommonJS Comment',
-			commonjs2: 'CommonJS2 Comment',
-			amd: 'AMD Comment'
-		}
+		sourceMapFilename: '[name].map'
 	},
 	...webpackDevServer,
+	node: {
+		process: false
+	},
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js', '.jsx']
 	},
+	devtool: 'source-map',
 	mode: Dev ? 'development' : 'production',
 	module: {
 		rules: [
