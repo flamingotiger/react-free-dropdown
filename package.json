@@ -15,6 +15,7 @@
     "validate": "npm run prettier:check && npm run lint:fix && npm run lint:eslint",
     "lint:eslint": "eslint './src/**/*.{ts,tsx,js,jsx}'",
     "lint:fix": "eslint --fix './src/**/*.{ts,tsx,js,jsx}'",
+    "lint:style": "stylelint './src/**/*.{ts,tsx}'",
     "prettier:check": "prettier --write --config ./.prettierrc './src/**/*.{ts,tsx}'",
     "storybook": "start-storybook -p 3003",
     "build-storybook": "build-storybook"

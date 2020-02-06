@@ -29,6 +29,12 @@ const RfddSelectStyle = {
 		color: ${({ mode }: RfddSelectStyleType): string =>
 			isLightMode(mode) ? color.opacityDarkGray : color.opacityLightGray};
 		transition: color 0.3s;
+		svg {
+			path {
+				stroke: ${({ mode }: RfddSelectStyleType): string =>
+					isLightMode(mode) ? color.opacityDarkGray : color.opacityLightGray};
+			}
+		}
 		&:hover {
 			color: ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.black : color.white)};
 			svg {
@@ -51,10 +57,6 @@ const RfddSelectStyle = {
 		top: 50%;
 		margin-top: ${({ isFocus }: RFDDSvgStyleType): string => (isFocus ? '-2px' : '-7.5px')};
 		transform: ${({ isFocus }: RFDDSvgStyleType): string => (isFocus ? 'rotate(135deg)' : 'rotate(-45deg)')};
-		path {
-			stroke: ${({ mode }: RFDDSvgStyleType): string =>
-				isLightMode(mode) ? color.opacityDarkGray : color.opacityLightGray};
-		}
 	`
 };
 

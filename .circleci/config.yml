@@ -22,6 +22,9 @@ jobs:
           name: Prettier and esLint
           command: npm run validate
       - run:
+          name: stylelint
+          command: npm run test:style
+      - run:
           name: storybook start
           command: npm run storybook
       - run:
@@ -30,6 +33,7 @@ jobs:
       - run:
           name: test unit
           command: npm run test
+
 workflows:
   version: 2
   build:
