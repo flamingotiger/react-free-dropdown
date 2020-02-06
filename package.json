@@ -2,7 +2,8 @@
   "name": "react-free-dropdown",
   "version": "1.0.0",
   "description": "customizable drop-down component",
-  "main": "index.tsx",
+  "main": "build/main.1cc2189d22fbe986356a.js",
+  "module": "build/main.1cc2189d22fbe986356a.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --hot",
     "build": "cross-env NODE_ENV=production webpack",
@@ -96,5 +97,9 @@
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm" : "~6.0.0"
   }
 }
