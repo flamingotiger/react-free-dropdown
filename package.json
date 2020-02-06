@@ -32,7 +32,7 @@
     "react"
   ],
   "author": "flamingotiger <hhbhong@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/flamingotiger/react-free-dropdown/issues"
   },
