@@ -6,7 +6,7 @@ import RfddOption from '../view/RfddOption';
 afterEach(cleanup);
 
 describe('<Rfdd/>', () => {
-	test('matches snapshot', () => {
+	it('matches snapshot', () => {
 		const { container } = render(
 			<Rfdd>
 				<RfddOption value="🍎Apple">Apple</RfddOption>
@@ -15,7 +15,7 @@ describe('<Rfdd/>', () => {
 		);
 		expect(container).toMatchSnapshot();
 	});
-	test('it displays default option items', () => {
+	it('it displays default option items', () => {
 		const { getByTestId } = render(
 			<Rfdd>
 				<RfddOption value="🍎Apple">Apple</RfddOption>
@@ -25,7 +25,7 @@ describe('<Rfdd/>', () => {
 		const optionList = getByTestId('list');
 		expect(optionList.children.length).toBe(2);
 	});
-	test('shows the props correctly', () => {
+	it('shows the props correctly', () => {
 		const { getByText } = render(
 			<Rfdd>
 				<RfddOption value="🍎Apple">Apple</RfddOption>
@@ -35,7 +35,7 @@ describe('<Rfdd/>', () => {
 		getByText('Apple');
 		getByText('Carrot');
 	});
-	test('focus and Blur', () => {
+	it('focus and Blur', () => {
 		const { getByTestId } = render(
 			<Rfdd>
 				<RfddOption value="🍎Apple">Apple</RfddOption>
@@ -50,7 +50,7 @@ describe('<Rfdd/>', () => {
 		fireEvent.blur(rfdd);
 		expect(list).toHaveStyle('max-height: 0');
 	});
-	test('select options after focus', () => {
+	it('select options after focus', () => {
 		const { getByTestId } = render(
 			<Rfdd>
 				<RfddOption value="🍎Apple">Apple</RfddOption>
