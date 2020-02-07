@@ -2,7 +2,7 @@ import React from "react";
 import { addDecorator, addParameters } from "@storybook/react";
 import { withInfo } from "@storybook/addon-info";
 import { version } from "../package.json";
-import color from "../src/common/styles";
+import color from "../lib/common/styles";
 import theme from './theme';
 
 addParameters({ showPanel: false, options: theme });

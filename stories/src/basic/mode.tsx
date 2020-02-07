@@ -1,6 +1,6 @@
 import React from 'react';
-import Rfdd from '../../../src/view/Rfdd';
-import RfddOption from '../../../src/view/RfddOption';
+import Rfdd from '../../../lib/view/Rfdd';
+import RfddOption from '../../../lib/view/RfddOption';
 
 const DropDownBasic: React.FC<{ mode: 'light' | 'dark' }> = ({ mode }) => {
 	const [value, setValue] = React.useState<string>('');
