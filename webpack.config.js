@@ -1,11 +1,11 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const srcPath = path.resolve(__dirname, 'lib');
+const srcPath = path.resolve(__dirname, 'src');
 const Dev = process.env.NODE_ENV === 'development';
 
 module.exports = {
-	entry: './lib/index.ts',
+	entry: './src/index.ts',
 	output: {
 		filename: 'index.js',
 		path: path.resolve(__dirname, 'dist'),

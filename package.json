@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Easy custom dropdown list with React",
   "main": "./dist/index.js",
-  "types": "./dist/lib/types.d.ts",
+  "types": "./dist/src/types.d.ts",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --hot",
     "build": "npm run build:clean && npm run build:dist",
@@ -15,10 +15,10 @@
     "test:browser:run": "cypress run",
     "test:browser:ci": "start-server-and-test storybook http://localhost:3003 test:browser:run",
     "validate": "npm run prettier:check && npm run lint:fix && npm run lint:eslint",
-    "lint:eslint": "eslint 'lib/**/*.{ts,tsx,js,jsx}'",
-    "lint:fix": "eslint --fix 'lib/**/*.{ts,tsx,js,jsx}'",
-    "lint:style": "stylelint 'lib/**/*.{ts,tsx}'",
-    "prettier:check": "prettier --write --config ./.prettierrc 'lib/**/*.{ts,tsx}'",
+    "lint:eslint": "eslint 'src/**/*.{ts,tsx,js,jsx}'",
+    "lint:fix": "eslint --fix 'src/**/*.{ts,tsx,js,jsx}'",
+    "lint:style": "stylelint 'src/**/*.{ts,tsx}'",
+    "prettier:check": "prettier --write --config ./.prettierrc 'src/**/*.{ts,tsx}'",
     "storybook": "start-storybook -p 3003",
     "build-storybook": "build-storybook"
   },
