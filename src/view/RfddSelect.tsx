@@ -1,12 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
 import { Mode, RfddSelectType } from '../types';
 import color from '../common/styles';
 import { isLightMode } from '../common/utils';
-import { getSelectWidth } from '../state/get-layout';
-import { RootState } from '../state/reducers';
-import { setIsFocus, StatusChangeActionType } from '../state/status-change';
+import { useStatusChangeState, useStatusChangeDispatch, StatusChangeActionType } from '../state/status-change';
+import { useGetLayoutDispatch, GetLayoutActionType } from '../state/get-layout';
 
 interface RfddSelectStyleType {
 	mode: Mode;
@@ -63,23 +61,22 @@ const RfddSelectStyle = {
 export const RfddSelect: React.FC<RfddSelectType> = props => {
 	const { className, style, isValue, mode, value } = props;
 	const selectEl = React.useRef<HTMLDivElement>(null);
-	const dispatch = useDispatch();
-	const { isFocus } = useSelector((state: RootState) => state.statusChange);
+	const { isFocus } = useStatusChangeState();
+	const statusChangeDispatch = useStatusChangeDispatch();
+	const getLayoutDispatch = useGetLayoutDispatch();
 
 	React.useEffect(() => {
 		if (selectEl && selectEl.current) {
 			const { width } = selectEl.current.getBoundingClientRect();
-			dispatch(getSelectWidth(width));
+			getLayoutDispatch({ type: GetLayoutActionType.GET_SELECT_WIDTH, selectWidth: width });
 		}
-	}, [selectEl, dispatch]);
+	}, [getLayoutDispatch, selectEl]);
 
 	return (
 		<RfddSelectStyle.Wrapper
 			className={className}
 			style={style}
-			onClick={(): { type: StatusChangeActionType.IS_FOCUS; payload: { isFocus: boolean } } =>
-				dispatch(setIsFocus(!isFocus))
-			}
+			onClick={() => statusChangeDispatch({ type: StatusChangeActionType.IS_FOCUS, isFocus: !isFocus })}
 			isValue={isValue}
 			mode={mode}
 			ref={selectEl}
