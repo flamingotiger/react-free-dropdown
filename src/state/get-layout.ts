@@ -1,21 +1,35 @@
+import * as React from 'react';
 import produce from 'immer';
-import { action as actions, ActionType, createReducer } from 'typesafe-actions';
+import { Dispatch, useContext } from 'react';
+import { StatusChangeDispatchContext, StatusChangeState, StatusChangeStateContext } from './status-change';
 
-export enum GetLayoutActionType {
-	GET_SELECT_WIDTH = 'GET_SELECT_WIDTH'
-}
-export const getSelectWidth = (selectWidth: number) => actions(GetLayoutActionType.GET_SELECT_WIDTH, { selectWidth });
-export const actionCreator = { getSelectWidth };
 export interface GetLayoutState {
 	selectWidth: number;
 }
-export type GetLayoutAction = ActionType<typeof actionCreator>;
-const initialState: GetLayoutState = {
+export const getLayoutState: GetLayoutState = {
 	selectWidth: 0
 };
-export default createReducer<GetLayoutState, GetLayoutAction>(initialState, {
-	[GetLayoutActionType.GET_SELECT_WIDTH]: (state, action) =>
-		produce(state, (draft: GetLayoutState) => {
-			draft.selectWidth = action.payload.selectWidth;
-		})
-});
+export enum GetLayoutActionType {
+	GET_SELECT_WIDTH = 'GET_SELECT_WIDTH'
+}
+type GetLayoutAction = { type: GetLayoutActionType.GET_SELECT_WIDTH; selectWidth: number };
+export default function getLayoutReducer(state: GetLayoutState, action: GetLayoutAction): GetLayoutState {
+	if (action.type === GetLayoutActionType.GET_SELECT_WIDTH) {
+		return produce(state, (draft: GetLayoutState) => {
+			draft.selectWidth = action.selectWidth;
+		});
+	}
+	return state;
+}
+export const GetLayoutStateContext = React.createContext<GetLayoutState | undefined>(undefined);
+export const GetLayoutDispatchContext = React.createContext<Dispatch<GetLayoutAction> | undefined>(undefined);
+export function useGetLayoutState() {
+	const state = useContext(GetLayoutStateContext);
+	if (!state) throw new Error('GetLayoutStateContext not found');
+	return state;
+}
+export function useGetLayoutDispatch() {
+	const dispatch = useContext(GetLayoutDispatchContext);
+	if (!dispatch) throw new Error('GetLayoutDispatchContext not found');
+	return dispatch;
+}
