@@ -7,7 +7,7 @@ npm-debug.log.*
 .idea
 .vscode
 storybook-static
-src/__test__
+lib/__test__
 stories
 **/.*
 *.iml
