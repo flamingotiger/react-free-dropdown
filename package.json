@@ -6,7 +6,9 @@
   "types": "./dist/lib/types.d.ts",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --hot",
-    "build": "cross-env NODE_ENV=production webpack",
+    "build": "npm run build:clean && npm run build:dist",
+    "build:clean": "rm -rf ./dist",
+    "build:dist": "cross-env NODE_ENV=production webpack",
     "test": "jest --config ./jest.config.js",
     "test:watch": "npm run test --coverage --coveragePathIgnorePatterns=/debug",
     "test:browser": "cypress open",
