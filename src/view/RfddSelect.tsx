@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
-import { Mode, RfddSelectType } from 'types';
 import { useDispatch, useSelector } from 'react-redux';
-import color from '../../common/styles';
-import { isLightMode } from '../../common/utils';
-import { getSelectWidth } from '../../state/get-layout';
-import { RootState } from '../../state/reducers';
-import { setIsFocus, StatusChangeActionType } from '../../state/status-change';
+import { Mode, RfddSelectType } from '../types';
+import color from '../common/styles';
+import { isLightMode } from '../common/utils';
+import { getSelectWidth } from '../state/get-layout';
+import { RootState } from '../state/reducers';
+import { setIsFocus, StatusChangeActionType } from '../state/status-change';
 
 interface RfddSelectStyleType {
 	mode: Mode;
@@ -66,12 +66,13 @@ export const RfddSelect: React.FC<RfddSelectType> = props => {
 	const dispatch = useDispatch();
 	const { isFocus } = useSelector((state: RootState) => state.statusChange);
 
-	useEffect(() => {
+	React.useEffect(() => {
 		if (selectEl && selectEl.current) {
 			const { width } = selectEl.current.getBoundingClientRect();
 			dispatch(getSelectWidth(width));
 		}
 	}, [selectEl, dispatch]);
+
 	return (
 		<RfddSelectStyle.Wrapper
 			className={className}

@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
-import { RfddOptionType } from 'types';
-import color from '../../common/styles';
+import { RfddOptionType } from '../types';
+import color from '../common/styles';
 
 const RfddOptionStyle = {
 	Wrapper: styled.div`

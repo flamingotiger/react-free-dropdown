@@ -1,10 +1,10 @@
-import React, { CSSProperties } from 'react';
+import * as React from 'react';
 
 export type Mode = 'dark' | 'light';
 
 export interface RfddType {
 	className?: string;
-	style?: CSSProperties;
+	style?: React.CSSProperties;
 }
 
 export interface RfddPropsType extends RfddType {

@@ -1,12 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import styled from 'styled-components';
-import { Mode, RfddPropsType, RfddOptionType } from 'types';
 import { useDispatch, useSelector } from 'react-redux';
-import color from '../../common/styles';
-import { RootState } from '../../state/reducers';
-import { isLightMode } from '../../common/utils';
-import { RfddSelect } from '../RfddSelect';
-import { setOnBlur } from '../../state/status-change';
+import { Mode, RfddPropsType, RfddOptionType } from '../types';
+import color from '../common/styles';
+import { RootState } from '../state/reducers';
+import { isLightMode } from '../common/utils';
+import { RfddSelect } from './RfddSelect';
+import { setOnBlur } from '../state/status-change';
 
 interface RfddStyleProps {
 	mode: Mode;
