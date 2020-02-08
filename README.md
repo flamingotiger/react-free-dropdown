@@ -38,7 +38,8 @@ export default App;
 ## RfddOption Property
 
 | Property  | Type | Descriptions |
+| ------------- | ------------- | ------------- |
 | value | `string` | option value |
 | onChange | `(value: string) => void` | change value function |
 | children | `React.ReactNode` | option children |
-| index | `number` | option index |
+| index | `number` or `string` | option index |
