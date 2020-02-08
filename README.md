@@ -8,7 +8,7 @@
 
 </div>
 
-## Getting Started
+## Usage
 
 ```typescript jsx
 import React from 'react';
@@ -23,3 +23,22 @@ const App: React.FC = () => {
 
 export default App;
 ```
+
+## Rfdd Property
+
+| Property  | Type | Descriptions |
+| ------------- | ------------- | ------------- |
+| className  | `string`  | classname | 
+| style  | `React.CSSProperties`  | style | 
+| value | `string` | select value |
+| children | `React.ReactElement<RfddOptionType, 'RfddOption'>[]` | only use RfddOption component |
+| onChange | `(value: string) => void` | change value function |
+| mode | `light` or `dark` | light or dark mode |
+
+## RfddOption Property
+
+| Property  | Type | Descriptions |
+| value | `string` | option value |
+| onChange | `(value: string) => void` | change value function |
+| children | `React.ReactNode` | option children |
+| index | `number` | option index |

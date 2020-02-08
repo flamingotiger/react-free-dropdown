@@ -18,7 +18,7 @@ export interface RfddOptionType extends RfddType {
 	value?: string | number;
 	onChange?: (value: string) => void;
 	children: React.ReactNode;
-	index?: number;
+	index?: string | number;
 }
 
 export interface RfddSelectType extends RfddType {
