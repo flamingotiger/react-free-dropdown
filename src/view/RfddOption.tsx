@@ -15,6 +15,9 @@ const RfddOptionStyle = {
 		white-space: nowrap;
 		font-size: 12px;
 		line-height: 12px;
+		min-width: 120px;
+		min-height: 30px;
+
 		&:hover {
 			background-color: ${color.keyColor};
 			color: #ffffff;

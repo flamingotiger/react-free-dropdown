@@ -14,8 +14,12 @@ module.exports = {
 		sourceMapFilename: 'index.map'
 	},
 	resolve: {
-		extensions: ['.ts', '.tsx', '.js', '.jsx']
+		extensions: ['.ts', '.tsx', '.js', '.jsx'],
+		alias: {
+			react: require.resolve('./node_modules/react')
+		}
 	},
+	externals: 'react',
 	devtool: 'source-map',
 	mode: Dev ? 'development' : 'production',
 	module: {

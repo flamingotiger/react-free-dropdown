@@ -45,8 +45,8 @@ const RfddSelectStyle = {
 		line-height: 12px;
 		border: 1px solid ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.gray : color.dark)};
 		width: 100%;
-		min-width: 40px;
-		min-height: 20px;
+		min-width: 120px;
+		min-height: 30px;
 		position: relative;
 	`,
 	Svg: styled.svg`

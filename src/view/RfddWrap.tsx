@@ -20,6 +20,8 @@ const RfddStyle = {
 		box-sizing: border-box;
 		font-weight: lighter;
 		outline: none;
+		min-width: 120px;
+		min-height: 30px;
 	`,
 	Ul: styled.ul`
 		display: block;
@@ -107,7 +109,7 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 			className="rfdd"
 		>
 			<RfddSelect className={className} style={style} isValue={isValue} mode={mode} value={value || noOnChangeValue} />
-			{children && children.length > 0 && (
+			{children && (
 				<RfddStyle.Ul width={selectWidth} isFocus={isFocus} mode={mode} id="list" data-testid="list">
 					{React.Children.map(
 						children,
