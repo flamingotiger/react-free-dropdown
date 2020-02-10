@@ -34,13 +34,17 @@ export default App;
 | children | `React.ReactElement<RfddOptionType, 'RfddOption'>[]` | only use RfddOption component |
 | onChange | `(value: string) => void` | change value function |
 | mode | `light` or `dark` | light or dark mode |
+| hoverStyle | `string` | each option custom hover style |
+| optionStyle | `string` | all option custom style |
 
 ## RfddOption Property
 
 | Property  | Type | Descriptions |
 | ------------- | ------------- | ------------- |
-| hoverStyle | `string` | each option custom hover style |
 | value | `string` | option value |
 | onChange | `(value: string) => void` | change value function |
 | children | `React.ReactNode` | option children |
 | index | `number` or `string` | option index |
+| hoverStyle | `string` | each option custom hover style |
+| optionStyle | `string` | all option custom style |
+| onClick | `() => void` | onChange before active function |

@@ -24,10 +24,13 @@ const RfddOptionStyle = {
 				${hoverStyle}
 			`}
 		}
+		${({ optionStyle }: RfddOptionStyleType) => css`
+			${optionStyle}
+		`}
 	`
 };
 const RfddOption: React.FC<RfddOptionType> = props => {
-	const { value, children, onChange, index, style, hoverStyle } = props;
+	const { value, children, onChange, index, style, hoverStyle, optionStyle, onClick } = props;
 	let valueToString = '';
 	if (value) {
 		valueToString = value.toString();
@@ -38,9 +41,13 @@ const RfddOption: React.FC<RfddOptionType> = props => {
 		<RfddOptionStyle.Wrapper
 			key={`option${index}`}
 			data-testid={`option${index}`}
-			onClick={(): void => onChange && onChange(valueToString)}
+			onClick={(): void => {
+				onClick && onClick();
+				return onChange && onChange(valueToString);
+			}}
 			style={style}
 			hoverStyle={hoverStyle}
+			optionStyle={optionStyle}
 		>
 			{children}
 		</RfddOptionStyle.Wrapper>
