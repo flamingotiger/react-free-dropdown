@@ -102,8 +102,8 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
   },
-  "engines": {
-    "node": ">=0.8.0",
-    "npm": "~6.0.0"
+  "resolutions": {
+    "@types/react": "^16.9.19",
+    "@types/react-dom": "^16.9.5"
   }
 }

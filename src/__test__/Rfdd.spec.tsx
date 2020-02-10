@@ -15,7 +15,7 @@ describe('<Rfdd/>', () => {
 		);
 		expect(container).toMatchSnapshot();
 	});
-	it('it displays default option items', () => {
+	it('it displays default RfddOption items', () => {
 		const { getByTestId } = render(
 			<Rfdd>
 				<RfddOption value="🍎Apple">Apple</RfddOption>
@@ -35,7 +35,7 @@ describe('<Rfdd/>', () => {
 		getByText('Apple');
 		getByText('Carrot');
 	});
-	it('focus and Blur', () => {
+	it('dropdown focus and Blur', () => {
 		const { getByTestId } = render(
 			<Rfdd>
 				<RfddOption value="🍎Apple">Apple</RfddOption>
@@ -50,7 +50,7 @@ describe('<Rfdd/>', () => {
 		fireEvent.blur(rfdd);
 		expect(list).toHaveStyle('max-height: 0');
 	});
-	it('select options after focus', () => {
+	it('select RfddOption after focus', () => {
 		const { getByTestId } = render(
 			<Rfdd>
 				<RfddOption value="🍎Apple">Apple</RfddOption>
@@ -66,5 +66,31 @@ describe('<Rfdd/>', () => {
 		const option1 = getByTestId('option1');
 		fireEvent.click(option1);
 		expect(selectText.innerHTML).toBe('🥕Carrot');
+	});
+	it('optionStyle property', () => {
+		const { getByTestId } = render(
+			<Rfdd optionStyle="border: 1px solid red;">
+				<RfddOption value="🍎Apple">Apple</RfddOption>
+				<RfddOption value="🥕Carrot">Carrot</RfddOption>
+			</Rfdd>
+		);
+		const option0 = getByTestId('option0');
+		expect(option0).toHaveStyle('border: 1px solid red;');
+	});
+	it('each RfddOption style', () => {
+		const { getByTestId } = render(
+			<Rfdd>
+				<RfddOption value="🍎Apple" style={{ backgroundColor: 'red' }}>
+					Apple
+				</RfddOption>
+				<RfddOption value="🥕Carrot" style={{ backgroundColor: 'orange' }}>
+					Carrot
+				</RfddOption>
+			</Rfdd>
+		);
+		const option0 = getByTestId('option0');
+		expect(option0).toHaveStyle('background-color: red;');
+		const option1 = getByTestId('option1');
+		expect(option1).toHaveStyle('background-color: orange;');
 	});
 });

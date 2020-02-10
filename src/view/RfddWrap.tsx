@@ -79,7 +79,7 @@ const RfddStyle = {
 };
 
 const RfddWrap: React.FC<RfddPropsType> = props => {
-	const { children, style, hoverStyle, onChange, value, mode = 'light' } = props;
+	const { children, style, hoverStyle, optionStyle, onChange, value, mode = 'light' } = props;
 	const [noOnChangeValue, setNoOnChangeValue] = React.useState<string>('');
 	const { isFocus } = useStatusChangeState();
 	const statusChangeDispatch = useStatusChangeDispatch();
@@ -118,7 +118,8 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 								return React.cloneElement(child, {
 									onChange: existOrNoOnChange,
 									index,
-									hoverStyle
+									hoverStyle,
+									optionStyle
 								});
 							}
 							return null;
