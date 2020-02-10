@@ -1,5 +1,10 @@
 describe('custom-style-test', () => {
+	it('successfully loads', () => {
+		cy.visit('/');
+	});
 	it('custom-style toggle', () => {
+		cy.clock();
+		cy.tick(2000);
 		cy.get('#explorercustom-style').click();
 	});
 	it('active options custom select and option style category', () => {
