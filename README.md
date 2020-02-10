@@ -28,9 +28,9 @@ export default App;
 
 | Property  | Type | Descriptions |
 | ------------- | ------------- | ------------- |
-| style  | `React.CSSProperties`  | style | 
+| style  | `React.CSSProperties`  | must be entered as camelcase | 
 | hoverStyle | `string` | custom hover style |
-| value | `string` | select value |
+| value | `string` | selected value |
 | children | `React.ReactElement<RfddOptionType, 'RfddOption'>[]` | only use RfddOption component |
 | onChange | `(value: string) => void` | change value function |
 | mode | `light` or `dark` | light or dark mode |
@@ -42,6 +42,7 @@ export default App;
 | Property  | Type | Descriptions |
 | ------------- | ------------- | ------------- |
 | value | `string` | option value |
+| style  | `React.CSSProperties`  | must be entered as camelcase | 
 | onChange | `(value: string) => void` | change value function |
 | children | `React.ReactNode` | option children |
 | index | `number` or `string` | option index |
