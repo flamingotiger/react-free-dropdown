@@ -1,12 +1,16 @@
 import * as React from 'react';
 
+// Common types
+export interface RfddCommonStyleType {
+	style?: React.CSSProperties;
+	hoverStyle?: string;
+	optionStyle?: string;
+}
+
 // Component types
 export type Mode = 'dark' | 'light';
 
-export interface RfddType {
-	style?: React.CSSProperties;
-	hoverStyle?: string;
-}
+export type RfddType = RfddCommonStyleType;
 
 export interface RfddPropsType extends RfddType {
 	value?: string;
@@ -20,6 +24,7 @@ export interface RfddOptionType extends RfddType {
 	onChange?: (value: string) => void;
 	children: React.ReactNode;
 	index?: string | number;
+	onClick?: () => void;
 }
 
 export interface RfddSelectType extends RfddType {
@@ -45,7 +50,4 @@ export interface RfddStyleProps {
 	isFocus: boolean;
 }
 
-export interface RfddOptionStyleType {
-	style?: React.CSSProperties;
-	hoverStyle?: string;
-}
+export type RfddOptionStyleType = RfddCommonStyleType;
