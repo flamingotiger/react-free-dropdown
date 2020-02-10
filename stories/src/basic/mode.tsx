@@ -8,7 +8,6 @@ const DropDownBasic: React.FC<{ mode: 'light' | 'dark' }> = ({ mode }) => {
 		<Rfdd
 			onChange={(optionValue: string): void => setValue(optionValue)}
 			value={value}
-			style={{ width: '120px', height: '30px' }}
 			mode={mode}
 		>
 			<RfddOption value="🍎Apple">
