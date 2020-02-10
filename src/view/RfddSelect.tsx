@@ -1,20 +1,10 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Mode, RfddSelectType } from '../types';
+import { RfddSelectType, RfddSelectStyleType, RFDDSvgStyleType } from '../types';
 import color from '../common/styles';
 import { isLightMode } from '../common/utils';
 import { useStatusChangeState, useStatusChangeDispatch, StatusChangeActionType } from '../state/status-change';
 import { useGetLayoutDispatch, GetLayoutActionType } from '../state/get-layout';
-
-interface RfddSelectStyleType {
-	mode: Mode;
-	isValue: boolean;
-}
-
-interface RFDDSvgStyleType {
-	mode: Mode;
-	isFocus: boolean;
-}
 
 const RfddSelectStyle = {
 	Wrapper: styled.div`
@@ -44,10 +34,15 @@ const RfddSelectStyle = {
 		font-size: 12px;
 		line-height: 12px;
 		border: 1px solid ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.gray : color.dark)};
-		width: 100%;
-		min-width: 120px;
-		min-height: 30px;
+		width: 120px;
+		height: 30px;
 		position: relative;
+		span {
+			width: 80%;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+		}
 	`,
 	Svg: styled.svg`
 		position: absolute;
@@ -59,7 +54,7 @@ const RfddSelectStyle = {
 };
 
 export const RfddSelect: React.FC<RfddSelectType> = props => {
-	const { className, style, isValue, mode, value } = props;
+	const { style, isValue, mode, value } = props;
 	const selectEl = React.useRef<HTMLDivElement>(null);
 	const { isFocus } = useStatusChangeState();
 	const statusChangeDispatch = useStatusChangeDispatch();
@@ -74,7 +69,6 @@ export const RfddSelect: React.FC<RfddSelectType> = props => {
 
 	return (
 		<RfddSelectStyle.Wrapper
-			className={className}
 			style={style}
 			onClick={() => statusChangeDispatch({ type: StatusChangeActionType.IS_FOCUS, isFocus: !isFocus })}
 			isValue={isValue}

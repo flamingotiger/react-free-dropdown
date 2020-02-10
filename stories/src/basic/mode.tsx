@@ -5,11 +5,7 @@ import RfddOption from '../../../src/view/RfddOption';
 const DropDownBasic: React.FC<{ mode: 'light' | 'dark' }> = ({ mode }) => {
 	const [value, setValue] = React.useState<string>('');
 	return (
-		<Rfdd
-			onChange={(optionValue: string): void => setValue(optionValue)}
-			value={value}
-			mode={mode}
-		>
+		<Rfdd onChange={(optionValue: string): void => setValue(optionValue)} value={value} mode={mode}>
 			<RfddOption value="🍎Apple">
 				<span role="img" aria-label="Apple">
 					🍎

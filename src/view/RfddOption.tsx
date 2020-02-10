@@ -1,11 +1,10 @@
 import * as React from 'react';
-import styled from 'styled-components';
-import { RfddOptionType } from '../types';
+import styled, { css } from 'styled-components';
+import { RfddOptionType, RfddOptionStyleType } from '../types';
 import color from '../common/styles';
 
 const RfddOptionStyle = {
 	Wrapper: styled.div`
-		width: 100%;
 		cursor: pointer;
 		list-style: none;
 		padding: 8px;
@@ -15,17 +14,20 @@ const RfddOptionStyle = {
 		white-space: nowrap;
 		font-size: 12px;
 		line-height: 12px;
-		min-width: 120px;
-		min-height: 30px;
-
+		width: 120px;
+		height: 30px;
+		text-align: left;
 		&:hover {
 			background-color: ${color.keyColor};
 			color: #ffffff;
+			${({ hoverStyle }: RfddOptionStyleType) => css`
+				${hoverStyle}
+			`}
 		}
 	`
 };
 const RfddOption: React.FC<RfddOptionType> = props => {
-	const { value, children, onChange, index } = props;
+	const { value, children, onChange, index, style, hoverStyle } = props;
 	let valueToString = '';
 	if (value) {
 		valueToString = value.toString();
@@ -37,6 +39,8 @@ const RfddOption: React.FC<RfddOptionType> = props => {
 			key={`option${index}`}
 			data-testid={`option${index}`}
 			onClick={(): void => onChange && onChange(valueToString)}
+			style={style}
+			hoverStyle={hoverStyle}
 		>
 			{children}
 		</RfddOptionStyle.Wrapper>

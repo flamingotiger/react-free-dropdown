@@ -1,17 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Mode, RfddOptionType, RfddPropsType } from '../types';
+import { RfddStyleProps, RfddOptionType, RfddPropsType } from '../types';
 import color from '../common/styles';
 import { isLightMode } from '../common/utils';
 import { RfddSelect } from './RfddSelect';
 import { StatusChangeActionType, useStatusChangeDispatch, useStatusChangeState } from '../state/status-change';
 import { useGetLayoutState } from '../state/get-layout';
-
-interface RfddStyleProps {
-	mode: Mode;
-	width: number;
-	isFocus: boolean;
-}
 
 const RfddStyle = {
 	Wrapper: styled.div`
@@ -20,8 +14,8 @@ const RfddStyle = {
 		box-sizing: border-box;
 		font-weight: lighter;
 		outline: none;
-		min-width: 120px;
-		min-height: 30px;
+		width: 120px;
+		height: 30px;
 	`,
 	Ul: styled.ul`
 		display: block;
@@ -85,7 +79,7 @@ const RfddStyle = {
 };
 
 const RfddWrap: React.FC<RfddPropsType> = props => {
-	const { children, className, style, onChange, value, mode = 'light' } = props;
+	const { children, style, hoverStyle, onChange, value, mode = 'light' } = props;
 	const [noOnChangeValue, setNoOnChangeValue] = React.useState<string>('');
 	const { isFocus } = useStatusChangeState();
 	const statusChangeDispatch = useStatusChangeDispatch();
@@ -108,7 +102,7 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 			data-testid="rfdd"
 			className="rfdd"
 		>
-			<RfddSelect className={className} style={style} isValue={isValue} mode={mode} value={value || noOnChangeValue} />
+			<RfddSelect style={style} isValue={isValue} mode={mode} value={value || noOnChangeValue} />
 			{children && (
 				<RfddStyle.Ul width={selectWidth} isFocus={isFocus} mode={mode} id="list" data-testid="list">
 					{React.Children.map(
@@ -123,7 +117,8 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 							if (child.type.displayName === 'RfddOption') {
 								return React.cloneElement(child, {
 									onChange: existOrNoOnChange,
-									index
+									index,
+									hoverStyle
 								});
 							}
 							return null;
