@@ -42,7 +42,9 @@ const RfddOption: React.FC<RfddOptionType> = props => {
 			key={`option${index}`}
 			data-testid={`option${index}`}
 			onClick={(): void => {
-				onClick && onClick();
+				if (onClick) {
+					onClick();
+				}
 				return onChange && onChange(valueToString);
 			}}
 			style={style}
