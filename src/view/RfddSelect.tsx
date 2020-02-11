@@ -5,7 +5,7 @@ import color from '../common/styles';
 import { isLightMode } from '../common/utils';
 import { useStatusChangeState, useStatusChangeDispatch, StatusChangeActionType } from '../state/status-change';
 import { useGetLayoutDispatch, GetLayoutActionType } from '../state/get-layout';
-import DefaultIcon from '../static/default_arrow.svg';
+import DefaultIcon from '../assets/default_arrow.svg';
 
 const RfddSelectStyle = {
 	Wrapper: styled.div`
