@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { RfddSelectType, RfddSelectStyleType, RFDDSvgStyleType } from '../types';
+import { RfddSelectType, RfddSelectStyleType, RFDDIconStyleType } from '../types';
 import color from '../common/styles';
 import { isLightMode } from '../common/utils';
 import { useStatusChangeState, useStatusChangeDispatch, StatusChangeActionType } from '../state/status-change';
@@ -18,7 +18,6 @@ const RfddSelectStyle = {
 		color: ${({ mode }: RfddSelectStyleType): string =>
 			isLightMode(mode) ? color.opacityDarkGray : color.opacityLightGray};
 		transition: color 0.3s;
-
 		&:hover {
 			color: ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.black : color.white)};
 		}
@@ -40,7 +39,7 @@ const RfddSelectStyle = {
 		right: 10px;
 		top: 50%;
 		margin-top: -6px;
-		transform: ${({ isFocus }: RFDDSvgStyleType): string => (isFocus ? 'rotate(180deg)' : 'rotate(0deg)')};
+		transform: ${({ isFocus }: RFDDIconStyleType): string => (isFocus ? 'rotate(180deg)' : 'rotate(0deg)')};
 		img {
 			display: block;
 			width: 12px;
@@ -75,7 +74,7 @@ export const RfddSelect: React.FC<RfddSelectType> = props => {
 		>
 			<span data-testid="select-text">{value}</span>
 			{!hiddenIcon && (
-				<RfddSelectStyle.Icon mode={mode} isFocus={isFocus}>
+				<RfddSelectStyle.Icon isFocus={isFocus}>
 					<img src={icon || DefaultIcon} alt="default arrow icon" />
 				</RfddSelectStyle.Icon>
 			)}

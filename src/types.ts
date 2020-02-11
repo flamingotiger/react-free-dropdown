@@ -43,8 +43,7 @@ export interface RfddSelectStyleType {
 	isValue: boolean;
 }
 
-export interface RFDDSvgStyleType {
-	mode: Mode;
+export interface RFDDIconStyleType {
 	isFocus: boolean;
 }
 
