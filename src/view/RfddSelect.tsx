@@ -17,15 +17,16 @@ const RfddSelectStyle = {
 		color: ${({ mode }: RfddSelectStyleType): string =>
 			isLightMode(mode) ? color.opacityDarkGray : color.opacityLightGray};
 		transition: color 0.3s;
-		svg {
+		#icon {
 			path {
 				stroke: ${({ mode }: RfddSelectStyleType): string =>
 					isLightMode(mode) ? color.opacityDarkGray : color.opacityLightGray};
 			}
 		}
+
 		&:hover {
 			color: ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.black : color.white)};
-			svg {
+			#icon {
 				path {
 					stroke: ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.black : color.white)};
 				}
@@ -44,7 +45,7 @@ const RfddSelectStyle = {
 			white-space: nowrap;
 		}
 	`,
-	Svg: styled.svg`
+	Icon: styled.div`
 		position: absolute;
 		right: 10px;
 		top: 50%;
@@ -54,7 +55,7 @@ const RfddSelectStyle = {
 };
 
 export const RfddSelect: React.FC<RfddSelectType> = props => {
-	const { style, isValue, mode, value } = props;
+	const { style, isValue, mode, value, icon, hiddenIcon } = props;
 	const selectEl = React.useRef<HTMLDivElement>(null);
 	const { isFocus } = useStatusChangeState();
 	const statusChangeDispatch = useStatusChangeDispatch();
@@ -78,16 +79,15 @@ export const RfddSelect: React.FC<RfddSelectType> = props => {
 			data-testid="select"
 		>
 			<span data-testid="select-text">{value}</span>
-			<RfddSelectStyle.Svg
-				width="10px"
-				height="10px"
-				viewBox="0 0 10 10"
-				xmlns="http://www.w3.org/2000/svg"
-				mode={mode}
-				isFocus={isFocus}
-			>
-				<path d="M0 0 V 10 H 10" fill="none" />
-			</RfddSelectStyle.Svg>
+			{!hiddenIcon && (
+				<RfddSelectStyle.Icon mode={mode} isFocus={isFocus}>
+					{icon || (
+						<svg id="icon" width="10px" height="10px" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0 0 V 10 H 10" fill="none" />
+						</svg>
+					)}
+				</RfddSelectStyle.Icon>
+			)}
 		</RfddSelectStyle.Wrapper>
 	);
 };

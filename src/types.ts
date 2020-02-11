@@ -17,6 +17,8 @@ export interface RfddPropsType extends RfddType {
 	children?: React.ReactElement<RfddOptionType, 'RfddOption'>[];
 	onChange?: (value: string) => void;
 	mode?: Mode;
+	icon?: any;
+	hiddenIcon?: boolean;
 }
 
 export interface RfddOptionType extends RfddType {
@@ -31,6 +33,8 @@ export interface RfddSelectType extends RfddType {
 	isValue: boolean;
 	mode: Mode;
 	value: number | string;
+	icon?: any;
+	hiddenIcon?: boolean;
 }
 
 // Style types
