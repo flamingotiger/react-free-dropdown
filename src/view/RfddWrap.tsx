@@ -79,12 +79,11 @@ const RfddStyle = {
 };
 
 const RfddWrap: React.FC<RfddPropsType> = props => {
-	const { children, style, hoverStyle, optionStyle, onChange, value, mode = 'light' } = props;
+	const { children, style, hoverStyle, optionStyle, onChange, value, mode = 'light', icon, hiddenIcon } = props;
 	const [noOnChangeValue, setNoOnChangeValue] = React.useState<string>('');
 	const { isFocus } = useStatusChangeState();
 	const statusChangeDispatch = useStatusChangeDispatch();
 	const { selectWidth } = useGetLayoutState();
-
 	const existOrNoOnChange = (optionValue: string): void => {
 		if (onChange) {
 			onChange(optionValue);
@@ -102,7 +101,14 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 			data-testid="rfdd"
 			className="rfdd"
 		>
-			<RfddSelect style={style} isValue={isValue} mode={mode} value={value || noOnChangeValue} />
+			<RfddSelect
+				style={style}
+				isValue={isValue}
+				mode={mode}
+				value={value || noOnChangeValue}
+				icon={icon}
+				hiddenIcon={hiddenIcon}
+			/>
 			{children && (
 				<RfddStyle.Ul width={selectWidth} isFocus={isFocus} mode={mode} id="list" data-testid="list">
 					{React.Children.map(

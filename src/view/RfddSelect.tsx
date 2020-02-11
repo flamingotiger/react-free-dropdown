@@ -1,10 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { RfddSelectType, RfddSelectStyleType, RFDDSvgStyleType } from '../types';
+import { RfddSelectType, RfddSelectStyleType, RFDDIconStyleType } from '../types';
 import color from '../common/styles';
 import { isLightMode } from '../common/utils';
 import { useStatusChangeState, useStatusChangeDispatch, StatusChangeActionType } from '../state/status-change';
 import { useGetLayoutDispatch, GetLayoutActionType } from '../state/get-layout';
+import DefaultIcon from '../static/default_arrow.svg';
 
 const RfddSelectStyle = {
 	Wrapper: styled.div`
@@ -17,19 +18,8 @@ const RfddSelectStyle = {
 		color: ${({ mode }: RfddSelectStyleType): string =>
 			isLightMode(mode) ? color.opacityDarkGray : color.opacityLightGray};
 		transition: color 0.3s;
-		svg {
-			path {
-				stroke: ${({ mode }: RfddSelectStyleType): string =>
-					isLightMode(mode) ? color.opacityDarkGray : color.opacityLightGray};
-			}
-		}
 		&:hover {
 			color: ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.black : color.white)};
-			svg {
-				path {
-					stroke: ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.black : color.white)};
-				}
-			}
 		}
 		font-size: 12px;
 		line-height: 12px;
@@ -44,17 +34,22 @@ const RfddSelectStyle = {
 			white-space: nowrap;
 		}
 	`,
-	Svg: styled.svg`
+	Icon: styled.div`
 		position: absolute;
 		right: 10px;
 		top: 50%;
-		margin-top: ${({ isFocus }: RFDDSvgStyleType): string => (isFocus ? '-2px' : '-7.5px')};
-		transform: ${({ isFocus }: RFDDSvgStyleType): string => (isFocus ? 'rotate(135deg)' : 'rotate(-45deg)')};
+		margin-top: -6px;
+		transform: ${({ isFocus }: RFDDIconStyleType): string => (isFocus ? 'rotate(180deg)' : 'rotate(0deg)')};
+		img {
+			display: block;
+			width: 12px;
+			height: 12px;
+		}
 	`
 };
 
 export const RfddSelect: React.FC<RfddSelectType> = props => {
-	const { style, isValue, mode, value } = props;
+	const { style, isValue, mode, value, icon, hiddenIcon } = props;
 	const selectEl = React.useRef<HTMLDivElement>(null);
 	const { isFocus } = useStatusChangeState();
 	const statusChangeDispatch = useStatusChangeDispatch();
@@ -78,16 +73,11 @@ export const RfddSelect: React.FC<RfddSelectType> = props => {
 			data-testid="select"
 		>
 			<span data-testid="select-text">{value}</span>
-			<RfddSelectStyle.Svg
-				width="10px"
-				height="10px"
-				viewBox="0 0 10 10"
-				xmlns="http://www.w3.org/2000/svg"
-				mode={mode}
-				isFocus={isFocus}
-			>
-				<path d="M0 0 V 10 H 10" fill="none" />
-			</RfddSelectStyle.Svg>
+			{!hiddenIcon && (
+				<RfddSelectStyle.Icon isFocus={isFocus}>
+					<img src={icon || DefaultIcon} alt="default arrow icon" />
+				</RfddSelectStyle.Icon>
+			)}
 		</RfddSelectStyle.Wrapper>
 	);
 };

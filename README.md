@@ -17,7 +17,7 @@ import React from 'react';
 import Rfdd, { RfddOption } from 'Rfdd';
 
 const App: React.FC = () => {
-  return (<Rfdd hoverStyle="border: 1px solid red">
+  return (<Rfdd>
     <RfddOption value="Apple">Apple</RfddOption>
     <RfddOption value="Grape">Grape</RfddOption>    
   </Rfdd>);
@@ -38,6 +38,8 @@ export default App;
 | mode | `light` or `dark` | light or dark mode |
 | hoverStyle | `string` | each option custom hover style |
 | optionStyle | `string` | all option custom style |
+| icon | `any` | example: `import image from './example.png'` |
+| hiddenIcon | `boolean` | hidden icon | 
 
 ## RfddOption Property
 

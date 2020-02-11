@@ -17,7 +17,12 @@ module.exports = {
 	// Matches parent folder `__tests__` and filename
 	// should contain `test` or `spec`.
 	testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
-
 	// Module file extensions for importing
-	moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node']
+	moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+	// jest image error : error and resolved it by creating a assetsTransformer.js
+	moduleNameMapper: {
+		'\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
+			'<rootDir>/assetsTransformer.js',
+		'\\.(css|less)$': '<rootDir>/assetsTransformer.js'
+	}
 };

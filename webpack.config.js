@@ -1,8 +1,11 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
 
 const srcPath = path.resolve(__dirname, 'src');
 const Dev = process.env.NODE_ENV === 'development';
+const Prod = process.env.NODE_ENV === 'production';
 
 module.exports = {
 	entry: './src/index.ts',
@@ -11,7 +14,8 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist'),
 		library: 'react-free-dropdown',
 		libraryTarget: 'umd',
-		sourceMapFilename: 'index.map'
+		sourceMapFilename: 'index.map',
+		publicPath: 'assets'
 	},
 	resolve: {
 		extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -25,7 +29,7 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.(js|jsx)$/,
+				test: /\.(js|jsx|ts|tsx)$/,
 				exclude: /node_modules/,
 				include: srcPath,
 				use: ['babel-loader', 'stylelint-custom-processor-loader']
@@ -37,10 +41,14 @@ module.exports = {
 				loader: 'ts-loader'
 			},
 			{
-				test: /\.(jpe?g|ico|gif|png|svg)$/,
+				test: /\.(woff|woff2|otf|ttf|eot|jpe?g|png|gif|svg|json)$/,
 				loader: ['file-loader', 'url-loader']
 			}
 		]
 	},
-	plugins: [new CleanWebpackPlugin()]
+	plugins: [
+		new CleanWebpackPlugin(),
+		new CopyWebpackPlugin([{ from: path.resolve(srcPath, 'assets'), to: 'assets' }]),
+		Prod && new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i })
+	]
 };
