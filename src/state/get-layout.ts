@@ -1,5 +1,4 @@
 import * as React from 'react';
-import produce from 'immer';
 import { Dispatch, useContext } from 'react';
 
 export interface GetLayoutState {
@@ -14,9 +13,7 @@ export enum GetLayoutActionType {
 type GetLayoutAction = { type: GetLayoutActionType.GET_SELECT_WIDTH; selectWidth: number };
 export default function getLayoutReducer(state: GetLayoutState, action: GetLayoutAction): GetLayoutState {
 	if (action.type === GetLayoutActionType.GET_SELECT_WIDTH) {
-		return produce(state, (draft: GetLayoutState) => {
-			draft.selectWidth = action.selectWidth;
-		});
+		return { ...state, selectWidth: action.selectWidth };
 	}
 	return state;
 }
