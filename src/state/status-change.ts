@@ -1,5 +1,4 @@
 import * as React from 'react';
-import produce from 'immer';
 import { Dispatch, useContext } from 'react';
 
 export interface StatusChangeState {
@@ -18,13 +17,9 @@ type StatusChangeAction =
 export default function statusChangeReducer(state: StatusChangeState, action: StatusChangeAction): StatusChangeState {
 	switch (action.type) {
 		case StatusChangeActionType.IS_FOCUS:
-			return produce(state, (draft: StatusChangeState) => {
-				draft.isFocus = action.isFocus;
-			});
+			return { ...state, isFocus: action.isFocus };
 		case StatusChangeActionType.ON_BLUR:
-			return produce(state, (draft: StatusChangeState) => {
-				draft.isFocus = false;
-			});
+			return { ...state, isFocus: false };
 		default:
 			return state;
 	}
