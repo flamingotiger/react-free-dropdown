@@ -3,6 +3,7 @@ import typescript from 'rollup-plugin-typescript2';
 import resolve from '@rollup/plugin-node-resolve';
 import svgs from '@svgr/rollup';
 // eslint-disable-next-line import/extensions
+import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 
 const input = 'src/index.ts';
@@ -14,18 +15,8 @@ export default {
 	input,
 	output: [
 		{
-			file: `dist/${pkg.name}.js`,
-			format: 'cjs'
-		},
-		{
-			file: `dist/${pkg.name}.es.js`,
-			format: 'esm'
-		},
-		{
-			file: pkg.main,
-			format: 'umd',
-			name: 'ReactFreeCustomDropDown',
-			globals
+			file: `dist/${pkg.name}.min.es.js`,
+			format: 'es'
 		}
 	],
 	external,
@@ -33,6 +24,7 @@ export default {
 		commonjs({ include: 'node_modules/**' }),
 		resolve({ extensions }),
 		typescript({ tsconfig: './tsconfig.json', clean: true }),
-		svgs()
+		svgs(),
+		terser()
 	]
 };
