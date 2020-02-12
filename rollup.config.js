@@ -1,7 +1,9 @@
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
 import resolve from '@rollup/plugin-node-resolve';
-import svgs from '@svgr/rollup';
+import svgr from '@svgr/rollup';
+import image from '@rollup/plugin-image';
+import url from '@rollup/plugin-url';
 // eslint-disable-next-line import/extensions
 import pkg from './package.json';
 
@@ -33,6 +35,8 @@ export default {
 		commonjs({ include: 'node_modules/**' }),
 		resolve({ extensions }),
 		typescript({ tsconfig: './tsconfig.json', clean: true }),
-		svgs()
+		svgr(),
+		image(),
+		url()
 	]
 };

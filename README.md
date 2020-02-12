@@ -12,15 +12,19 @@
 
 ## Usage
 
-```typescript jsx
+```javascript jsx
 import React from 'react';
-import Rfdd, { RfddOption } from 'Rfdd';
+import { Rfdd, RfddOption } from 'react-free-dropdown';
 
-const App: React.FC = () => {
-  return (<Rfdd>
-    <RfddOption value="Apple">Apple</RfddOption>
-    <RfddOption value="Grape">Grape</RfddOption>    
-  </Rfdd>);
+const App = () => {
+  const [value, setValue] = React.useState('');
+  return (<>
+      <Rfdd onChange={optionValue => setValue(optionValue)}>
+        <RfddOption value="Apple">Apple</RfddOption>
+        <RfddOption value="Grape">Grape</RfddOption>    
+      </Rfdd>
+      <p>{value}</p>
+    </>);
 }
 
 export default App;
