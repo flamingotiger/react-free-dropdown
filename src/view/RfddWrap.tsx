@@ -79,21 +79,33 @@ const RfddStyle = {
 };
 
 const RfddWrap: React.FC<RfddPropsType> = props => {
-	const { children, style, hoverStyle, optionStyle, onChange, value, mode = 'light', icon, hiddenIcon } = props;
-	const [noOnChangeValue, setNoOnChangeValue] = React.useState<string>('');
+	const {
+		children,
+		style,
+		hoverStyle,
+		optionStyle,
+		onChange,
+		value,
+		mode = 'light',
+		icon,
+		hiddenIcon,
+		placeholder
+	} = props;
+	const [selectValue, setSelectValue] = React.useState<string>('');
 	const { isFocus } = useStatusChangeState();
 	const statusChangeDispatch = useStatusChangeDispatch();
 	const { selectWidth } = useGetLayoutState();
-	const existOrNoOnChange = (optionValue: string): void => {
+	const handleChange = (optionValue: string): void => {
 		if (onChange) {
 			onChange(optionValue);
-		} else {
-			setNoOnChangeValue(optionValue);
 		}
 		statusChangeDispatch({ type: StatusChangeActionType.ON_BLUR });
 	};
-
-	const isValue = value !== '' || noOnChangeValue !== '';
+	const handleSelectChange = (optionStr: string): void => {
+		setSelectValue(optionStr);
+		statusChangeDispatch({ type: StatusChangeActionType.ON_BLUR });
+	};
+	const isValue = value !== '' || selectValue !== '';
 	return (
 		<RfddStyle.Wrapper
 			tabIndex={0}
@@ -105,7 +117,7 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 				style={style}
 				isValue={isValue}
 				mode={mode}
-				value={value || noOnChangeValue}
+				value={placeholder || selectValue}
 				icon={icon}
 				hiddenIcon={hiddenIcon}
 			/>
@@ -122,7 +134,8 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 							// Render when RfddOption is enabled only
 							if (child.type.displayName === 'RfddOption') {
 								return React.cloneElement(child, {
-									onChange: existOrNoOnChange,
+									onChange: handleChange,
+									onSelectChange: handleSelectChange,
 									index,
 									hoverStyle,
 									optionStyle

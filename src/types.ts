@@ -19,6 +19,7 @@ export interface RfddPropsType extends RfddType {
 	mode?: Mode;
 	icon?: any;
 	hiddenIcon?: boolean;
+	placeholder?: string;
 }
 
 export interface RfddOptionType extends RfddType {
@@ -27,6 +28,7 @@ export interface RfddOptionType extends RfddType {
 	children: React.ReactNode;
 	index?: string | number;
 	onClick?: () => void;
+	onSelectChange?: (selectStr: string) => void;
 }
 
 export interface RfddSelectType extends RfddType {

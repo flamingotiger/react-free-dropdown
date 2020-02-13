@@ -30,13 +30,7 @@ const RfddOptionStyle = {
 	`
 };
 const RfddOption: React.FC<RfddOptionType> = props => {
-	const { value, children, onChange, index, style, hoverStyle, optionStyle, onClick } = props;
-	let valueToString = '';
-	if (value) {
-		valueToString = value.toString();
-	} else if (typeof children === 'string') {
-		valueToString = children;
-	}
+	const { value, children, onChange, index, style, hoverStyle, optionStyle, onClick, onSelectChange } = props;
 	return (
 		<RfddOptionStyle.Wrapper
 			key={`option${index}`}
@@ -44,6 +38,21 @@ const RfddOption: React.FC<RfddOptionType> = props => {
 			onClick={(): void => {
 				if (onClick) {
 					onClick();
+				}
+				if (onSelectChange) {
+					let textToString = '';
+					if (children) {
+						textToString = String(children);
+					} else if (typeof children === 'string') {
+						textToString = children;
+					}
+					onSelectChange(textToString);
+				}
+				let valueToString = '';
+				if (value) {
+					valueToString = value.toString();
+				} else if (typeof children === 'string') {
+					valueToString = children;
 				}
 				return onChange && onChange(valueToString);
 			}}
