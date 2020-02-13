@@ -1,15 +1,10 @@
 import React from "react";
 import { addDecorator, addParameters } from "@storybook/react";
-import { withInfo } from "@storybook/addon-info";
 import { version } from "../package.json";
 import color from "../src/common/styles";
 import theme from './theme';
 
 addParameters({ showPanel: false, options: theme });
-
-if (process.env.NODE_ENV === "development") {
-  addDecorator(withInfo);
-}
 
 //http://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=rfdd
 console.log(`%c
