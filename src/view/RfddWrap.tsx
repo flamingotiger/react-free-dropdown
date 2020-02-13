@@ -89,7 +89,7 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 		mode = 'light',
 		icon,
 		hiddenIcon,
-		placeholder
+		placeholder = ''
 	} = props;
 	const [selectValue, setSelectValue] = React.useState<string>('');
 	const { isFocus } = useStatusChangeState();
@@ -117,7 +117,7 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 				style={style}
 				isValue={isValue}
 				mode={mode}
-				value={placeholder || selectValue}
+				value={selectValue || placeholder}
 				icon={icon}
 				hiddenIcon={hiddenIcon}
 			/>

@@ -62,10 +62,10 @@ describe('<Rfdd/>', () => {
 		const option0 = getByTestId('option0');
 		fireEvent.click(select);
 		fireEvent.click(option0);
-		expect(selectText.innerHTML).toBe('🍎Apple');
+		expect(selectText.innerHTML).toBe('Apple');
 		const option1 = getByTestId('option1');
 		fireEvent.click(option1);
-		expect(selectText.innerHTML).toBe('🥕Carrot');
+		expect(selectText.innerHTML).toBe('Carrot');
 	});
 	it('optionStyle property', () => {
 		const { getByTestId } = render(
@@ -92,5 +92,19 @@ describe('<Rfdd/>', () => {
 		expect(option0).toHaveStyle('background-color: red;');
 		const option1 = getByTestId('option1');
 		expect(option1).toHaveStyle('background-color: orange;');
+	});
+	it('placeholder setting', () => {
+		const { getByTestId } = render(
+			<Rfdd placeholder="placeholder">
+				<RfddOption value="🍎Apple" style={{ backgroundColor: 'red' }}>
+					Apple
+				</RfddOption>
+				<RfddOption value="🥕Carrot" style={{ backgroundColor: 'orange' }}>
+					Carrot
+				</RfddOption>
+			</Rfdd>
+		);
+		const select = getByTestId('select-text');
+		expect(select.innerHTML).toBe('placeholder');
 	});
 });
