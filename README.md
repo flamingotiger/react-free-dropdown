@@ -10,7 +10,14 @@
 
 </div>
 
-## Usage
+## Get Started 📦
+`react-free-dropdown` install the package.
+
+```shell
+npm install react-free-dropdown
+```
+
+## Usage 📃
 
 ```javascript jsx
 import React from 'react';
@@ -30,7 +37,7 @@ const App = () => {
 export default App;
 ```
 
-## Rfdd Property
+## Rfdd Property ⛷
 
 | Property  | Type | Descriptions | Example |
 | ------------- | ------------- | ------------- | ------------- |
@@ -44,7 +51,7 @@ export default App;
 | icon | `any` | usage import image `import image from './example.png'` | `icon={image}` |
 | hiddenIcon | `boolean` | hidden icon | `hiddenIcon={true}` |
 
-## RfddOption Property
+## RfddOption Property 🏂
 
 | Property  | Type | Descriptions | Example |
 | ------------- | ------------- | ------------- | ------------- |
@@ -54,6 +61,8 @@ export default App;
 | hoverStyle | `string` | each option custom hover style | `hoverStyle='border: 1px solid red;'` |
 | onClick | `() => void` | onChange before active function | `onClick={() => console.log('onClick')}` |
 
-## Preview
+## Preview 🎆
 
 ![react-free-dropdown preview](./public/react-free-dropdown-example.gif)
+
+🔎[Play the example](https://react-free-dropdown.netlify.com/?path=/story/drop-down-basic--light-mode)
