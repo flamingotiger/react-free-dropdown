@@ -42,14 +42,14 @@
   },
   "peerDependencies": {
     "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "styled-components": "^4.4.1"
+    "react-dom": "^16.12.0"
   },
   "homepage": "https://github.com/flamingotiger/react-free-dropdown#readme",
   "dependencies": {
     "@testing-library/jest-dom": "^5.1.1",
     "@testing-library/react": "^9.4.0",
-    "@testing-library/react-hooks": "^3.2.1"
+    "@testing-library/react-hooks": "^3.2.1",
+    "styled-components": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",

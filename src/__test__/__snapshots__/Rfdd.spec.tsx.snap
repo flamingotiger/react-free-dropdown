@@ -3,12 +3,12 @@
 exports[`<Rfdd/> matches snapshot 1`] = `
 <div>
   <div
-    class="sc-htpNat cZbpxV rfdd"
+    class="sc-AxiKw fzSUts rfdd"
     data-testid="rfdd"
     tabindex="0"
   >
     <div
-      class="sc-bdVaJa gWUDwE"
+      class="sc-AxjAm hxbETt"
       data-testid="select"
       id="select"
       mode="light"
@@ -17,7 +17,7 @@ exports[`<Rfdd/> matches snapshot 1`] = `
         data-testid="select-text"
       />
       <div
-        class="sc-bwzfXH dKzWQP"
+        class="sc-AxirZ gFLkSd"
       >
         <img
           alt="default arrow icon"
@@ -26,20 +26,20 @@ exports[`<Rfdd/> matches snapshot 1`] = `
       </div>
     </div>
     <ul
-      class="sc-bxivhb fQMNvA"
+      class="sc-AxhCb fHeRNO"
       data-testid="list"
       id="list"
       mode="light"
       width="0"
     >
       <div
-        class="sc-ifAKCX hzqeqx"
+        class="sc-AxhUy kiLkLq"
         data-testid="option0"
       >
         Apple
       </div>
       <div
-        class="sc-ifAKCX hzqeqx"
+        class="sc-AxhUy kiLkLq"
         data-testid="option1"
       >
         Carrot
