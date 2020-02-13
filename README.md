@@ -53,6 +53,7 @@ export default App;
 | optionStyle | `string` | all option custom style | `optionStyle='border: 1px solid red;'` |
 | icon | `any` | usage import image `import image from './example.png'` | `icon={image}` |
 | hiddenIcon | `boolean` | hidden icon | `hiddenIcon={true}` |
+| placeholder | `string` | setting placeholder | `placeholder='area'` |
 
 ## RfddOption Property 🏂
 

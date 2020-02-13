@@ -18,36 +18,11 @@ const CustomDropDown: React.FC<{
 			hoverStyle={hoverStyle}
 			optionStyle={optionStyle}
 		>
-			<RfddOption value="🍎Apple">
-				<span role="img" aria-label="Apple">
-					🍎
-				</span>
-				Apple
-			</RfddOption>
-			<RfddOption value="🥕Carrot">
-				<span role="img" aria-label="Carrot">
-					🥕
-				</span>
-				Carrot
-			</RfddOption>
-			<RfddOption value="🍌Banana">
-				<span role="img" aria-label="Banana">
-					🍌
-				</span>
-				Banana
-			</RfddOption>
-			<RfddOption value="🍇Grape">
-				<span role="img" aria-label="Grape">
-					🍇
-				</span>
-				Grape
-			</RfddOption>
-			<RfddOption value="🍊Orange">
-				<span role="img" aria-label="Orange">
-					🍊
-				</span>
-				Orange
-			</RfddOption>
+			<RfddOption value="🍎Apple">🍎 Apple</RfddOption>
+			<RfddOption value="🥕Carrot">🥕 Carrot</RfddOption>
+			<RfddOption value="🍌Banana">🍌 Banana</RfddOption>
+			<RfddOption value="🍇Grape">🍇 Grape</RfddOption>
+			<RfddOption value="🍊Orange">🍊 Orange</RfddOption>
 		</Rfdd>
 	);
 };
