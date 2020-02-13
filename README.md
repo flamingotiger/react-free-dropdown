@@ -7,6 +7,9 @@
 **Easy custom** dropdown list with [`React`](https://facebook.github.io/react/)
 
 [![Actions Status](https://github.com/flamingotiger/react-free-dropdown/workflows/react-free-dropdown-ci/badge.svg)](https://github.com/flamingotiger/react-free-dropdown/actions)
+[![npm](https://img.shields.io/npm/v/react-free-dropdown.svg)](https://www.npmjs.com/package/react-free-dropdown)
+[![install size](https://packagephobia.now.sh/badge?p=react-free-dropdown)](https://packagephobia.now.sh/result?p=react-free-dropdown)
+[![npm downloads](https://img.shields.io/npm/dm/react-free-dropdown.svg?style=flat-square)](http://npm-stat.com/charts.html?package=react-free-dropdown)
 
 </div>
 
