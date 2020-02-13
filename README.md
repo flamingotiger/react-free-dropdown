@@ -53,3 +53,7 @@ export default App;
 | children | `React.ReactNode` | option children | `option text or <div>option Element</div>`|
 | hoverStyle | `string` | each option custom hover style | `hoverStyle='border: 1px solid red;'` |
 | onClick | `() => void` | onChange before active function | `onClick={() => console.log('onClick')}` |
+
+## Preview
+
+![react-free-dropdown preview](./public/react-free-dropdown-example.gif)
