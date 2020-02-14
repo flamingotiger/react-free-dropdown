@@ -54,6 +54,28 @@ describe('custom-style-test', () => {
 				.click();
 		});
 	});
+	it('focus custom style category', () => {
+		cy.get('#explorercustom-style--focus-custom-style').click();
+	});
+	it('focus custom style', () => {
+		cy.get('#storybook-preview-iframe').then($iframe => {
+			const $body = $iframe.contents().find('body');
+			const optionSelect = name => {
+				cy.wrap($body)
+					.find('#select')
+					.click();
+				cy.wrap($body)
+					.find('#list')
+					.contains(name)
+					.click();
+			};
+			optionSelect('Apple');
+			optionSelect('Carrot');
+			optionSelect('Banana');
+			optionSelect('Grape');
+			optionSelect('Orange');
+		});
+	});
 	it('each option style custom category', () => {
 		cy.get('#explorercustom-style--each-custom-option-style').click();
 	});

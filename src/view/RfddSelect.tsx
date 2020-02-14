@@ -68,7 +68,7 @@ export const RfddSelect: React.FC<RfddSelectType> = props => {
 
 	return (
 		<RfddSelectStyle.Wrapper
-			style={(isFocus && focusStyle) ? focusStyle : selectStyle}
+			style={isFocus && focusStyle ? focusStyle : selectStyle}
 			onClick={() => statusChangeDispatch({ type: StatusChangeActionType.IS_FOCUS, isFocus: !isFocus })}
 			isValue={isValue}
 			mode={mode}
