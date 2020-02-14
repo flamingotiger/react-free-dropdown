@@ -21,6 +21,7 @@ export interface RfddPropsType extends RfddType {
 	hiddenIcon?: boolean;
 	placeholder?: string;
 	selectStyle?: React.CSSProperties;
+	focusStyle?: React.CSSProperties;
 }
 
 export interface RfddOptionType extends RfddType {
@@ -39,6 +40,7 @@ export interface RfddSelectType extends RfddType {
 	icon?: any;
 	hiddenIcon?: boolean;
 	selectStyle?: React.CSSProperties;
+	focusStyle?: React.CSSProperties;
 }
 
 // Style types

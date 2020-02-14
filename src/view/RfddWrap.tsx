@@ -82,6 +82,7 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 	const {
 		children,
 		style,
+		focusStyle,
 		selectStyle,
 		hoverStyle,
 		optionStyle,
@@ -116,6 +117,7 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 			style={{ ...style, height: `${selectLayout.height}px` }}
 		>
 			<RfddSelect
+				focusStyle={focusStyle}
 				selectStyle={selectStyle}
 				isValue={isValue}
 				mode={mode}

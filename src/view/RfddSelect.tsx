@@ -53,7 +53,7 @@ const RfddSelectStyle = {
 };
 
 export const RfddSelect: React.FC<RfddSelectType> = props => {
-	const { selectStyle, isValue, mode, value, icon, hiddenIcon } = props;
+	const { focusStyle, selectStyle, isValue, mode, value, icon, hiddenIcon } = props;
 	const selectEl = React.useRef<HTMLDivElement>(null);
 	const { isFocus } = useStatusChangeState();
 	const statusChangeDispatch = useStatusChangeDispatch();
@@ -68,7 +68,7 @@ export const RfddSelect: React.FC<RfddSelectType> = props => {
 
 	return (
 		<RfddSelectStyle.Wrapper
-			style={selectStyle}
+			style={isFocus && focusStyle ? focusStyle : selectStyle}
 			onClick={() => statusChangeDispatch({ type: StatusChangeActionType.IS_FOCUS, isFocus: !isFocus })}
 			isValue={isValue}
 			mode={mode}
