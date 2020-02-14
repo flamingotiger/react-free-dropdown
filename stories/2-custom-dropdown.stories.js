@@ -8,6 +8,9 @@ storiesOf('custom-style', module)
 	.add('custom select style and option style', () => (
 		<CustomDropDown mode="light" selectStyle={{ border: '1px solid red' }} optionStyle="border: 1px solid red" />
 	))
+	.add('focus custom style', () => (
+		<CustomDropDown mode="light" focusStyle={{ background: 'purple', color: 'white' }} />
+	))
 	.add('custom hover style', () => <CustomDropDown mode="light" hoverStyle="background: purple" />)
 	.add('each custom option style', () => {
 		const [backgroundColor, setBackgroundColor] = React.useState('');

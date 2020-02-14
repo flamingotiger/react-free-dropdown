@@ -46,6 +46,7 @@ export default App;
 | ------------- | ------------- | ------------- | ------------- |
 | style  | `React.CSSProperties`  | dropdown wrapper style | `style={{border: '1px solid red'}}` |
 | selectStyle  | `React.CSSProperties`  | select component style | `selectStyle={{border: '1px solid red'}}` | 
+| focusStyle  | `React.CSSProperties`  | if focus use style | `focusStyle={{border: '1px solid red'}}` | 
 | value | `string` | selected value | `value={value}` |
 | children | `React.ReactElement<RfddOptionType, 'RfddOption'>[]` | only use RfddOption component | `<RfddOption>option</RfddOption>`|
 | onChange | `(value: string) => void` | change value function | `onChange={(optionValue) => setValue(optionValue)}`|

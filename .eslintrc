@@ -55,6 +55,7 @@
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/no-var-requires": 0,
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true, "optionalDependencies": true, "peerDependencies": false}],
-    "jsx-a11y/accessible-emoji": 0
+    "jsx-a11y/accessible-emoji": 0,
+    "react/jsx-props-no-spreading": 0
   }
 }
