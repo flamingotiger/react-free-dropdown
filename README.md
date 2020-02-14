@@ -44,7 +44,8 @@ export default App;
 
 | Property  | Type | Descriptions | Example |
 | ------------- | ------------- | ------------- | ------------- |
-| style  | `React.CSSProperties`  | must be entered as camelcase | `style={{border: '1px solid red'}}` | 
+| style  | `React.CSSProperties`  | dropdown wrapper style | `style={{border: '1px solid red'}}` |
+| selectStyle  | `React.CSSProperties`  | select component style | `selectStyle={{border: '1px solid red'}}` | 
 | value | `string` | selected value | `value={value}` |
 | children | `React.ReactElement<RfddOptionType, 'RfddOption'>[]` | only use RfddOption component | `<RfddOption>option</RfddOption>`|
 | onChange | `(value: string) => void` | change value function | `onChange={(optionValue) => setValue(optionValue)}`|

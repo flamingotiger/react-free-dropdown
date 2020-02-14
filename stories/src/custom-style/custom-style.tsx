@@ -4,17 +4,17 @@ import RfddOption from '../../../src/view/RfddOption';
 
 const CustomDropDown: React.FC<{
 	mode: 'light' | 'dark';
-	style: React.CSSProperties;
+	selectStyle: React.CSSProperties;
 	hoverStyle: string;
 	optionStyle: string;
-}> = ({ mode, style, hoverStyle, optionStyle }) => {
+}> = ({ mode, selectStyle, hoverStyle, optionStyle }) => {
 	const [value, setValue] = React.useState<string>('');
 	return (
 		<Rfdd
 			onChange={(optionValue: string): void => setValue(optionValue)}
 			value={value}
 			mode={mode}
-			style={style}
+			selectStyle={selectStyle}
 			hoverStyle={hoverStyle}
 			optionStyle={optionStyle}
 		>
