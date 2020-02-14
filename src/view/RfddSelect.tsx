@@ -29,8 +29,12 @@ const RfddSelectStyle = {
 		position: relative;
 		span {
 			width: 80%;
+			display: flex;
+			height: 100%;
+			overflow-x: hidden;
+			overflow-y: initial;
+			align-items: center;
 			text-overflow: ellipsis;
-			overflow: hidden;
 			white-space: nowrap;
 		}
 	`,
@@ -49,7 +53,7 @@ const RfddSelectStyle = {
 };
 
 export const RfddSelect: React.FC<RfddSelectType> = props => {
-	const { style, isValue, mode, value, icon, hiddenIcon } = props;
+	const { selectStyle, isValue, mode, value, icon, hiddenIcon } = props;
 	const selectEl = React.useRef<HTMLDivElement>(null);
 	const { isFocus } = useStatusChangeState();
 	const statusChangeDispatch = useStatusChangeDispatch();
@@ -57,14 +61,14 @@ export const RfddSelect: React.FC<RfddSelectType> = props => {
 
 	React.useEffect(() => {
 		if (selectEl && selectEl.current) {
-			const { width } = selectEl.current.getBoundingClientRect();
-			getLayoutDispatch({ type: GetLayoutActionType.GET_SELECT_WIDTH, selectWidth: width });
+			const { width, height } = selectEl.current.getBoundingClientRect();
+			getLayoutDispatch({ type: GetLayoutActionType.GET_SELECT_LAYOUT, selectLayout: { width, height } });
 		}
 	}, [getLayoutDispatch, selectEl]);
 
 	return (
 		<RfddSelectStyle.Wrapper
-			style={style}
+			style={selectStyle}
 			onClick={() => statusChangeDispatch({ type: StatusChangeActionType.IS_FOCUS, isFocus: !isFocus })}
 			isValue={isValue}
 			mode={mode}

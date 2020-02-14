@@ -2,18 +2,18 @@ import * as React from 'react';
 import { Dispatch, useContext } from 'react';
 
 export interface GetLayoutState {
-	selectWidth: number;
+	selectLayout: { width: number; height: number };
 }
 export const getLayoutState: GetLayoutState = {
-	selectWidth: 0
+	selectLayout: { width: 0, height: 0 }
 };
 export enum GetLayoutActionType {
-	GET_SELECT_WIDTH = 'GET_SELECT_WIDTH'
+	GET_SELECT_LAYOUT = 'GET_SELECT_LAYOUT'
 }
-type GetLayoutAction = { type: GetLayoutActionType.GET_SELECT_WIDTH; selectWidth: number };
+type GetLayoutAction = { type: GetLayoutActionType.GET_SELECT_LAYOUT; selectLayout: { width: number; height: number } };
 export default function getLayoutReducer(state: GetLayoutState, action: GetLayoutAction): GetLayoutState {
-	if (action.type === GetLayoutActionType.GET_SELECT_WIDTH) {
-		return { ...state, selectWidth: action.selectWidth };
+	if (action.type === GetLayoutActionType.GET_SELECT_LAYOUT) {
+		return { ...state, selectLayout: action.selectLayout };
 	}
 	return state;
 }

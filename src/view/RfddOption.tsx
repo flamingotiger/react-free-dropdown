@@ -17,6 +17,8 @@ const RfddOptionStyle = {
 		width: 100%;
 		height: 30px;
 		text-align: left;
+		display: flex;
+		align-items: center;
 		&:hover {
 			background-color: ${color.keyColor};
 			color: #ffffff;

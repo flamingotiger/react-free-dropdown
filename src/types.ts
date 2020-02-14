@@ -20,6 +20,7 @@ export interface RfddPropsType extends RfddType {
 	icon?: any;
 	hiddenIcon?: boolean;
 	placeholder?: string;
+	selectStyle?: React.CSSProperties;
 }
 
 export interface RfddOptionType extends RfddType {
@@ -37,6 +38,7 @@ export interface RfddSelectType extends RfddType {
 	value: number | string;
 	icon?: any;
 	hiddenIcon?: boolean;
+	selectStyle?: React.CSSProperties;
 }
 
 // Style types

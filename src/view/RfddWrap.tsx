@@ -14,7 +14,7 @@ const RfddStyle = {
 		box-sizing: border-box;
 		font-weight: lighter;
 		outline: none;
-		width: 120px;
+		min-width: 120px;
 		height: 30px;
 	`,
 	Ul: styled.ul`
@@ -82,6 +82,7 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 	const {
 		children,
 		style,
+		selectStyle,
 		hoverStyle,
 		optionStyle,
 		onChange,
@@ -94,7 +95,7 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 	const [selectValue, setSelectValue] = React.useState<string>('');
 	const { isFocus } = useStatusChangeState();
 	const statusChangeDispatch = useStatusChangeDispatch();
-	const { selectWidth } = useGetLayoutState();
+	const { selectLayout } = useGetLayoutState();
 	const handleChange = (optionValue: string): void => {
 		if (onChange) {
 			onChange(optionValue);
@@ -112,9 +113,10 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 			onBlur={() => statusChangeDispatch({ type: StatusChangeActionType.ON_BLUR })}
 			data-testid="rfdd"
 			className="rfdd"
+			style={{ ...style, height: `${selectLayout.height}px` }}
 		>
 			<RfddSelect
-				style={style}
+				selectStyle={selectStyle}
 				isValue={isValue}
 				mode={mode}
 				value={selectValue || placeholder}
@@ -122,7 +124,7 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 				hiddenIcon={hiddenIcon}
 			/>
 			{children && (
-				<RfddStyle.Ul width={selectWidth} isFocus={isFocus} mode={mode} id="list" data-testid="list">
+				<RfddStyle.Ul width={selectLayout.width} isFocus={isFocus} mode={mode} id="list" data-testid="list">
 					{React.Children.map(
 						children,
 						(
