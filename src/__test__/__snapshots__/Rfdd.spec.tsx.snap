@@ -33,13 +33,13 @@ exports[`<Rfdd/> matches snapshot 1`] = `
       width="0"
     >
       <div
-        class="sc-AxhUy kiLkLq"
+        class="sc-AxhUy hhdAct"
         data-testid="option0"
       >
         Apple
       </div>
       <div
-        class="sc-AxhUy kiLkLq"
+        class="sc-AxhUy hhdAct"
         data-testid="option1"
       >
         Carrot
