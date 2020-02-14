@@ -6,14 +6,14 @@ import Rfdd from '../src/view/Rfdd';
 
 storiesOf('custom-style', module)
 	.add('custom select style and option style', () => (
-		<CustomDropDown mode="light" style={{ border: '1px solid red' }} optionStyle="border: 1px solid red" />
+		<CustomDropDown mode="light" selectStyle={{ border: '1px solid red' }} optionStyle="border: 1px solid red" />
 	))
 	.add('custom hover style', () => <CustomDropDown mode="light" hoverStyle="background: purple" />)
 	.add('each custom option style', () => {
 		const [backgroundColor, setBackgroundColor] = React.useState('');
 		const [color, setColor] = React.useState('');
 		return (
-			<Rfdd style={{ backgroundColor, color }}>
+			<Rfdd selectStyle={{ backgroundColor, color }}>
 				<RfddOption
 					value="🍎Apple"
 					style={{ backgroundColor: 'red', color: '#fff' }}
@@ -22,10 +22,7 @@ storiesOf('custom-style', module)
 						setColor('#fff');
 					}}
 				>
-					<span role="img" aria-label="Apple">
-						🍎
-					</span>
-					Apple
+					🍎 Apple
 				</RfddOption>
 				<RfddOption
 					value="🥕Carrot"
@@ -35,10 +32,7 @@ storiesOf('custom-style', module)
 						setColor('#fff');
 					}}
 				>
-					<span role="img" aria-label="Carrot">
-						🥕
-					</span>
-					Carrot
+					🥕 Carrot
 				</RfddOption>
 				<RfddOption
 					value="🍌Banana"
@@ -48,10 +42,7 @@ storiesOf('custom-style', module)
 						setColor('#000');
 					}}
 				>
-					<span role="img" aria-label="Banana">
-						🍌
-					</span>
-					Banana
+					🍌 Banana
 				</RfddOption>
 				<RfddOption
 					value="🍇Grape"
@@ -61,10 +52,7 @@ storiesOf('custom-style', module)
 						setColor('#fff');
 					}}
 				>
-					<span role="img" aria-label="Grape">
-						🍇
-					</span>
-					Grape
+					🍇 Grape
 				</RfddOption>
 				<RfddOption
 					value="🍊Orange"
@@ -74,10 +62,7 @@ storiesOf('custom-style', module)
 						setColor('#fff');
 					}}
 				>
-					<span role="img" aria-label="Orange">
-						🍊
-					</span>
-					Orange
+					🍊 Orange
 				</RfddOption>
 			</Rfdd>
 		);
@@ -85,7 +70,7 @@ storiesOf('custom-style', module)
 	.add('custom style', () => (
 		<CustomDropDown
 			mode="light"
-			style={{
+			selectStyle={{
 				border: '1px solid rgb(209,60,120)',
 				borderRadius: '4px',
 				backgroundColor: 'rgb(209,60,120)',
@@ -95,4 +80,13 @@ storiesOf('custom-style', module)
 			hoverStyle="background-color: rgb(209,60,120); color: #fff; font-weight: bold;"
 			optionStyle="border-radius: 4px"
 		/>
-	));
+	))
+	.add('bigger dropdown', () => {
+		return (
+			<CustomDropDown
+				mode="light"
+				selectStyle={{ width: '300px', height: '100px', fontSize: '20px' }}
+				optionStyle={{ width: '300px', height: '100px', fontSize: '20px' }}
+			/>
+		);
+	});
