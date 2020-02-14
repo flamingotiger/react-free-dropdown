@@ -101,4 +101,26 @@ describe('custom-style-test', () => {
 				.click();
 		});
 	});
+	it('bigger dropdown custom style category', () => {
+		cy.get('#explorercustom-style--bigger-dropdown').click();
+	});
+	it('bigger dropdown custom style', () => {
+		cy.get('#storybook-preview-iframe').then($iframe => {
+			const $body = $iframe.contents().find('body');
+			const optionSelect = name => {
+				cy.wrap($body)
+					.find('#select')
+					.click();
+				cy.wrap($body)
+					.find('#list')
+					.contains(name)
+					.click();
+			};
+			optionSelect('Apple');
+			optionSelect('Carrot');
+			optionSelect('Banana');
+			optionSelect('Grape');
+			optionSelect('Orange');
+		});
+	});
 });
