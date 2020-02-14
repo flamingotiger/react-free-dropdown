@@ -14,7 +14,7 @@ const RfddOptionStyle = {
 		white-space: nowrap;
 		font-size: 12px;
 		line-height: 12px;
-		width: 120px;
+		width: 100%;
 		height: 30px;
 		text-align: left;
 		&:hover {
