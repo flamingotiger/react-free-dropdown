@@ -9,7 +9,7 @@ exports[`<Rfdd/> matches snapshot 1`] = `
     tabindex="0"
   >
     <div
-      class="sc-AxjAm gMReDB"
+      class="sc-AxjAm gMReDB rfdd-select"
       data-testid="select"
       id="select"
       mode="light"
@@ -27,20 +27,20 @@ exports[`<Rfdd/> matches snapshot 1`] = `
       </div>
     </div>
     <ul
-      class="sc-AxhCb fHeRNO"
+      class="sc-AxhCb gpxFPj"
       data-testid="list"
       id="list"
       mode="light"
       width="0"
     >
       <div
-        class="sc-AxhUy fHAvIJ"
+        class="sc-AxhUy fHAvIJ rfdd-option"
         data-testid="option0"
       >
         Apple
       </div>
       <div
-        class="sc-AxhUy fHAvIJ"
+        class="sc-AxhUy fHAvIJ rfdd-option"
         data-testid="option1"
       >
         Carrot

@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled, { css } from 'styled-components';
 import { RfddOptionType, RfddOptionStyleType } from '../types';
 import color from '../common/styles';
+import { classes } from '../common/utils';
 
 const RfddOptionStyle = {
 	Wrapper: styled.div`
@@ -32,9 +33,26 @@ const RfddOptionStyle = {
 	`
 };
 const RfddOption: React.FC<RfddOptionType> = props => {
-	const { value, children, onChange, index, style, hoverStyle, optionStyle, onClick, onSelectChange } = props;
+	const {
+		optionClassName,
+		className,
+		value,
+		children,
+		onChange,
+		index,
+		style,
+		hoverStyle,
+		optionStyle,
+		onClick,
+		onSelectChange
+	} = props;
 	return (
 		<RfddOptionStyle.Wrapper
+			className={
+				className && optionClassName
+					? classes(className, optionClassName)
+					: className || optionClassName || 'rfdd-option'
+			}
 			key={`option${index}`}
 			data-testid={`option${index}`}
 			onClick={(): void => {

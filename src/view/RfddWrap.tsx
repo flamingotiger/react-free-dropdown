@@ -1,8 +1,8 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { css, CSSProp } from 'styled-components';
 import { RfddStyleProps, RfddOptionType, RfddPropsType } from '../types';
 import color from '../common/styles';
-import { isLightMode } from '../common/utils';
+import { classes, isLightMode } from '../common/utils';
 import { RfddSelect } from './RfddSelect';
 import { StatusChangeActionType, useStatusChangeDispatch, useStatusChangeState } from '../state/status-change';
 import { useGetLayoutState } from '../state/get-layout';
@@ -25,47 +25,51 @@ const RfddStyle = {
 		top: 100%;
 		margin: 0;
 		padding: 0;
-		${({ mode }: RfddStyleProps): string => {
+		${({ mode }: RfddStyleProps): CSSProp => {
 			if (isLightMode(mode)) {
-				return `background-color: ${color.light};
-                color: rgb(100,100,100);
-                &::-webkit-scrollbar{
-                  width: 10px;
-                  padding: 0 2px;
-                  box-sizing: border-box;
-                }
-                &::-webkit-scrollbar-track {
-                  padding: 0 2px;
-                  box-sizing: border-box;
-                  background-color: rgb(220,220,220);
-                }
-                &::-webkit-scrollbar-thumb {
-                  background-color: rgb(190,190,190);
-                  width: 8px;
-                  border-radius: 10px;
-                  &:hover{
-                    background-color: rgb(180,180,180);
-                  }
-                }`;
+				return css`
+					background-color: ${color.light};
+					color: rgb(100, 100, 100);
+					&::-webkit-scrollbar {
+						width: 10px;
+						padding: 0 2px;
+						box-sizing: border-box;
+					}
+					&::-webkit-scrollbar-track {
+						padding: 0 2px;
+						box-sizing: border-box;
+						background-color: rgb(220, 220, 220);
+					}
+					&::-webkit-scrollbar-thumb {
+						background-color: rgb(190, 190, 190);
+						width: 8px;
+						border-radius: 10px;
+						&:hover {
+							background-color: rgb(180, 180, 180);
+						}
+					}
+				`;
 			}
-			return `background-color: ${color.dark};
-                color: ${color.white};
-                &::-webkit-scrollbar{
-                  width: 10px;
-                  padding: 0 2px;
-                  box-sizing: border-box;
-                }
-                &::-webkit-scrollbar-track {
-                  background-color: rgb(60,60,60);
-                }
-                &::-webkit-scrollbar-thumb {
-                  background-color: rgb(150,150,150);
-                  width: 8px;
-                  border-radius: 10px;
-                  &:hover{
-                    background-color: rgb(180,180,180);
-                  }
-                }`;
+			return css`
+				background-color: ${color.dark};
+				color: ${color.white};
+				&::-webkit-scrollbar {
+					width: 10px;
+					padding: 0 2px;
+					box-sizing: border-box;
+				}
+				&::-webkit-scrollbar-track {
+					background-color: rgb(60, 60, 60);
+				}
+				&::-webkit-scrollbar-thumb {
+					background-color: rgb(150, 150, 150);
+					width: 8px;
+					border-radius: 10px;
+					&:hover {
+						background-color: rgb(180, 180, 180);
+					}
+				}
+			`;
 		}};
 		width: ${({ width }: RfddStyleProps): string => `${width}px`};
 		box-sizing: border-box;
@@ -81,6 +85,9 @@ const RfddStyle = {
 const RfddWrap: React.FC<RfddPropsType> = props => {
 	const {
 		children,
+		selectClassName,
+		optionClassName,
+		className,
 		style,
 		focusStyle,
 		selectStyle,
@@ -113,10 +120,11 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 			tabIndex={0}
 			onBlur={() => statusChangeDispatch({ type: StatusChangeActionType.ON_BLUR })}
 			data-testid="rfdd"
-			className="rfdd"
+			className={className ? classes('rfdd', className) : 'rfdd'}
 			style={{ ...style, height: `${selectLayout.height}px` }}
 		>
 			<RfddSelect
+				selectClassName={selectClassName}
 				focusStyle={focusStyle}
 				selectStyle={selectStyle}
 				isValue={isValue}
@@ -140,6 +148,7 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 								return React.cloneElement(child, {
 									onChange: handleChange,
 									onSelectChange: handleSelectChange,
+									optionClassName,
 									index,
 									hoverStyle,
 									optionStyle
