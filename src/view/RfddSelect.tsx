@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { RfddSelectType, RfddSelectStyleType, RFDDIconStyleType } from '../types';
+import { RfddSelectStyleType, RFDDIconStyleType, RfddSelectProps } from '../types';
 import color from '../common/styles';
 import { isLightMode } from '../common/utils';
 import { useStatusChangeState, useStatusChangeDispatch, StatusChangeActionType } from '../state/status-change';
@@ -52,7 +52,7 @@ const RfddSelectStyle = {
 	`
 };
 
-export const RfddSelect: React.FC<RfddSelectType> = props => {
+export const RfddSelect: React.FC<RfddSelectProps> = props => {
 	const { focusStyle, selectClassName, selectStyle, isValue, mode, value, icon, hiddenIcon } = props;
 	const selectEl = React.useRef<HTMLDivElement>(null);
 	const { isFocus } = useStatusChangeState();

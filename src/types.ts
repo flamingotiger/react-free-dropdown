@@ -10,13 +10,12 @@ export interface RfddCommon {
 // Component types
 export type Mode = 'dark' | 'light';
 
-
-export interface RfddPropsType extends RfddCommon {
+export interface RfddProps extends RfddCommon {
 	selectClassName?: string;
 	optionClassName?: string;
 	className?: string;
 	value?: string;
-	children?: React.ReactElement<RfddOptionType, 'RfddOption'>[];
+	children?: React.ReactElement<RfddOptionProps, 'RfddOption'>[];
 	onChange?: (value: string) => void;
 	mode?: Mode;
 	icon?: any;
@@ -26,7 +25,7 @@ export interface RfddPropsType extends RfddCommon {
 	focusStyle?: React.CSSProperties;
 }
 
-export interface RfddOptionType extends RfddCommon {
+export interface RfddOptionProps extends RfddCommon {
 	className?: string;
 	optionClassName?: string;
 	value?: string | number;
@@ -37,7 +36,7 @@ export interface RfddOptionType extends RfddCommon {
 	onSelectChange?: (selectStr: string) => void;
 }
 
-export interface RfddSelectType extends RfddCommon {
+export interface RfddSelectProps extends RfddCommon {
 	selectClassName?: string;
 	isValue: boolean;
 	mode: Mode;
@@ -58,7 +57,7 @@ export interface RFDDIconStyleType {
 	isFocus: boolean;
 }
 
-export interface RfddStyleProps {
+export interface RfddStyleType {
 	mode: Mode;
 	width: number | string;
 	isFocus: boolean;
@@ -68,4 +67,4 @@ export interface RfddOptionStyleType {
 	style?: React.CSSProperties;
 	hoverStyle?: string;
 	optionStyle?: string;
-};
+}

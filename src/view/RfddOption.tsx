@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled, { css } from 'styled-components';
-import { RfddOptionType, RfddOptionStyleType } from '../types';
+import { RfddOptionStyleType, RfddOptionProps } from '../types';
 import color from '../common/styles';
 import { classes } from '../common/utils';
 
@@ -32,7 +32,7 @@ const RfddOptionStyle = {
 		`}
 	`
 };
-const RfddOption: React.FC<RfddOptionType> = props => {
+const RfddOption: React.FC<RfddOptionProps> = props => {
 	const {
 		optionClassName,
 		className,

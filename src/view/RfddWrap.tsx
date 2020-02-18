@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled, { css, CSSProp } from 'styled-components';
-import { RfddStyleProps, RfddOptionType, RfddPropsType } from '../types';
+import { RfddStyleType, RfddProps, RfddOptionProps } from '../types';
 import color from '../common/styles';
 import { classes, isLightMode } from '../common/utils';
 import { RfddSelect } from './RfddSelect';
@@ -25,7 +25,7 @@ const RfddStyle = {
 		top: 100%;
 		margin: 0;
 		padding: 0;
-		${({ mode }: RfddStyleProps): CSSProp => {
+		${({ mode }: RfddStyleType): CSSProp => {
 			if (isLightMode(mode)) {
 				return css`
 					background-color: ${color.light};
@@ -71,18 +71,18 @@ const RfddStyle = {
 				}
 			`;
 		}};
-		width: ${({ width }: RfddStyleProps): string => `${width}`};
+		width: ${({ width }: RfddStyleType): string => `${width}`};
 		box-sizing: border-box;
 		overflow: hidden;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 		z-index: 100;
 		transition: max-height 0.2s;
-		max-height: ${({ isFocus }: RfddStyleProps): string => (isFocus ? '100px' : '0')};
-		${({ isFocus }: RfddStyleProps): string => (isFocus ? 'overflow-y: auto' : 'overflow: hidden')};
+		max-height: ${({ isFocus }: RfddStyleType): string => (isFocus ? '100px' : '0')};
+		${({ isFocus }: RfddStyleType): string => (isFocus ? 'overflow-y: auto' : 'overflow: hidden')};
 	`
 };
 
-const RfddWrap: React.FC<RfddPropsType> = props => {
+const RfddWrap: React.FC<RfddProps> = props => {
 	const {
 		children,
 		selectClassName,
@@ -144,7 +144,7 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 					{React.Children.map(
 						children,
 						(
-							child: React.ReactElement<RfddOptionType> & {
+							child: React.ReactElement<RfddOptionProps> & {
 								type: { displayName?: string };
 							},
 							index: number
