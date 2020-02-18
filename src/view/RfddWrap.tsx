@@ -71,7 +71,7 @@ const RfddStyle = {
 				}
 			`;
 		}};
-		width: ${({ width }: RfddStyleProps): string => `${width}px`};
+		width: ${({ width }: RfddStyleProps): string => `${width}`};
 		box-sizing: border-box;
 		overflow: hidden;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -121,7 +121,7 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 			onBlur={() => statusChangeDispatch({ type: StatusChangeActionType.ON_BLUR })}
 			data-testid="rfdd"
 			className={className ? classes('rfdd', className) : 'rfdd'}
-			style={{ ...style, height: `${selectLayout.height}px` }}
+			style={{ ...style, height: `${selectLayout.height ? `${selectLayout.height}px` : '100%'}` }}
 		>
 			<RfddSelect
 				selectClassName={selectClassName}
@@ -134,7 +134,13 @@ const RfddWrap: React.FC<RfddPropsType> = props => {
 				hiddenIcon={hiddenIcon}
 			/>
 			{children && (
-				<RfddStyle.Ul width={selectLayout.width} isFocus={isFocus} mode={mode} id="list" data-testid="list">
+				<RfddStyle.Ul
+					width={selectLayout.width ? `${selectLayout.width}px` : '100%'}
+					isFocus={isFocus}
+					mode={mode}
+					id="list"
+					data-testid="list"
+				>
 					{React.Children.map(
 						children,
 						(

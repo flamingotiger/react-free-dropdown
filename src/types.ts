@@ -61,7 +61,7 @@ export interface RFDDIconStyleType {
 
 export interface RfddStyleProps {
 	mode: Mode;
-	width: number;
+	width: number | string;
 	isFocus: boolean;
 }
 
