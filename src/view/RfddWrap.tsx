@@ -5,7 +5,6 @@ import color from '../common/styles';
 import { classes, isLightMode } from '../common/utils';
 import { RfddSelect } from './RfddSelect';
 import { StatusChangeActionType, useStatusChangeDispatch, useStatusChangeState } from '../state/status-change';
-import { useGetLayoutState } from '../state/get-layout';
 
 const RfddStyle = {
 	Wrapper: styled.div`
@@ -23,6 +22,7 @@ const RfddStyle = {
 		position: absolute;
 		left: 0;
 		top: 100%;
+		z-index: 200;
 		margin: 0;
 		padding: 0;
 		${({ mode }: RfddStyleType): CSSProp => {
@@ -71,11 +71,10 @@ const RfddStyle = {
 				}
 			`;
 		}};
-		width: ${({ width }: RfddStyleType): string => `${width}`};
+		width: 100%;
 		box-sizing: border-box;
 		overflow: hidden;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-		z-index: 100;
 		transition: max-height 0.2s;
 		max-height: ${({ isFocus }: RfddStyleType): string => (isFocus ? '100px' : '0')};
 		${({ isFocus }: RfddStyleType): string => (isFocus ? 'overflow-y: auto' : 'overflow: hidden')};
@@ -104,7 +103,6 @@ const RfddWrap: React.FC<RfddProps> = props => {
 	const [selectValue, setSelectValue] = React.useState<string>('');
 	const { isFocus } = useStatusChangeState();
 	const statusChangeDispatch = useStatusChangeDispatch();
-	const { selectLayout } = useGetLayoutState();
 	const handleChange = (optionValue: string): void => {
 		if (onChange) {
 			onChange(optionValue);
@@ -122,7 +120,7 @@ const RfddWrap: React.FC<RfddProps> = props => {
 			onBlur={() => statusChangeDispatch({ type: StatusChangeActionType.ON_BLUR })}
 			data-testid="rfdd"
 			className={className ? classes('rfdd', className) : 'rfdd'}
-			style={{ ...style, height: `${selectLayout.height ? `${selectLayout.height}px` : '100%'}` }}
+			style={{ ...style }}
 		>
 			<RfddSelect
 				selectClassName={selectClassName}
@@ -135,13 +133,7 @@ const RfddWrap: React.FC<RfddProps> = props => {
 				hiddenIcon={hiddenIcon}
 			/>
 			{children && (
-				<RfddStyle.Ul
-					width={selectLayout.width ? `${selectLayout.width}px` : '100%'}
-					isFocus={isFocus}
-					mode={mode}
-					id="list"
-					data-testid="list"
-				>
+				<RfddStyle.Ul isFocus={isFocus} mode={mode} id="list" data-testid="list">
 					{React.Children.map(
 						children,
 						(
