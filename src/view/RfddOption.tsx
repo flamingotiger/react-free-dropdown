@@ -44,6 +44,7 @@ const RfddOption: React.FC<RfddOptionProps> = props => {
 		hoverStyle,
 		optionStyle,
 		onClick,
+		optionOnClick,
 		onSelectChange
 	} = props;
 	return (
@@ -58,6 +59,8 @@ const RfddOption: React.FC<RfddOptionProps> = props => {
 			onClick={(): void => {
 				if (onClick) {
 					onClick();
+				} else if (optionOnClick) {
+					optionOnClick();
 				}
 				if (onSelectChange) {
 					let textToString = '';

@@ -5,7 +5,7 @@ exports[`<Rfdd/> matches snapshot 1`] = `
   <div
     class="sc-AxiKw kUptjL rfdd"
     data-testid="rfdd"
-    style="height: 0px;"
+    style="height: 100%;"
     tabindex="0"
   >
     <div
@@ -27,11 +27,11 @@ exports[`<Rfdd/> matches snapshot 1`] = `
       </div>
     </div>
     <ul
-      class="sc-AxhCb gpxFPj"
+      class="sc-AxhCb fzwcVv"
       data-testid="list"
       id="list"
       mode="light"
-      width="0"
+      width="100%"
     >
       <div
         class="sc-AxhUy fHAvIJ rfdd-option"

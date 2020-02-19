@@ -86,6 +86,7 @@ const RfddWrap: React.FC<RfddProps> = props => {
 	const {
 		children,
 		selectClassName,
+		optionOnClick,
 		optionClassName,
 		className,
 		style,
@@ -155,6 +156,7 @@ const RfddWrap: React.FC<RfddProps> = props => {
 									onChange: handleChange,
 									onSelectChange: handleSelectChange,
 									optionClassName,
+									optionOnClick,
 									index,
 									hoverStyle,
 									optionStyle

@@ -11,18 +11,21 @@ export interface RfddCommon {
 export type Mode = 'dark' | 'light';
 
 export interface RfddProps extends RfddCommon {
-	selectClassName?: string;
-	optionClassName?: string;
 	className?: string;
 	value?: string;
 	children?: React.ReactElement<RfddOptionProps, 'RfddOption'>[];
 	onChange?: (value: string) => void;
 	mode?: Mode;
+	placeholder?: string;
+	// Receive select props
 	icon?: any;
 	hiddenIcon?: boolean;
-	placeholder?: string;
-	selectStyle?: React.CSSProperties;
 	focusStyle?: React.CSSProperties;
+	selectStyle?: React.CSSProperties;
+	selectClassName?: string;
+	// Receive Option props
+	optionClassName?: string;
+	optionOnClick?: () => void;
 }
 
 export interface RfddOptionProps extends RfddCommon {
@@ -32,6 +35,7 @@ export interface RfddOptionProps extends RfddCommon {
 	onChange?: (value: string) => void;
 	children: React.ReactNode;
 	index?: string | number;
+	optionOnClick?: () => void;
 	onClick?: () => void;
 	onSelectChange?: (selectStr: string) => void;
 }
