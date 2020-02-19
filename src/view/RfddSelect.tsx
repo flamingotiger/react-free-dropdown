@@ -1,10 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { RfddSelectType, RfddSelectStyleType, RFDDIconStyleType } from '../types';
+import { RfddSelectStyleType, RFDDIconStyleType, RfddSelectProps } from '../types';
 import color from '../common/styles';
 import { isLightMode } from '../common/utils';
 import { useStatusChangeState, useStatusChangeDispatch, StatusChangeActionType } from '../state/status-change';
-import { useGetLayoutDispatch, GetLayoutActionType } from '../state/get-layout';
 import DefaultIcon from '../assets/default_arrow.svg';
 
 const RfddSelectStyle = {
@@ -24,7 +23,7 @@ const RfddSelectStyle = {
 		font-size: 12px;
 		line-height: 12px;
 		border: 1px solid ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.gray : color.dark)};
-		width: 120px;
+		width: 100%;
 		height: 30px;
 		position: relative;
 		span {
@@ -52,28 +51,18 @@ const RfddSelectStyle = {
 	`
 };
 
-export const RfddSelect: React.FC<RfddSelectType> = props => {
+export const RfddSelect: React.FC<RfddSelectProps> = props => {
 	const { focusStyle, selectClassName, selectStyle, isValue, mode, value, icon, hiddenIcon } = props;
-	const selectEl = React.useRef<HTMLDivElement>(null);
 	const { isFocus } = useStatusChangeState();
 	const statusChangeDispatch = useStatusChangeDispatch();
-	const getLayoutDispatch = useGetLayoutDispatch();
-
-	React.useEffect(() => {
-		if (selectEl && selectEl.current) {
-			const { width, height } = selectEl.current.getBoundingClientRect();
-			getLayoutDispatch({ type: GetLayoutActionType.GET_SELECT_LAYOUT, selectLayout: { width, height } });
-		}
-	}, [getLayoutDispatch, selectEl]);
 
 	return (
 		<RfddSelectStyle.Wrapper
 			className={selectClassName || 'rfdd-select'}
-			style={isFocus && focusStyle ? focusStyle : selectStyle}
+			style={isFocus && focusStyle ? { ...selectStyle, ...focusStyle } : selectStyle}
 			onClick={() => statusChangeDispatch({ type: StatusChangeActionType.IS_FOCUS, isFocus: !isFocus })}
 			isValue={isValue}
 			mode={mode}
-			ref={selectEl}
 			id="select"
 			data-testid="select"
 		>

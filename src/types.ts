@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 // Common types
-export interface RfddCommonStyleType {
+export interface RfddCommon {
 	style?: React.CSSProperties;
 	hoverStyle?: string;
 	optionStyle?: string;
@@ -10,35 +10,37 @@ export interface RfddCommonStyleType {
 // Component types
 export type Mode = 'dark' | 'light';
 
-export type RfddType = RfddCommonStyleType;
-
-export interface RfddPropsType extends RfddType {
-	selectClassName?: string;
-	optionClassName?: string;
+export interface RfddProps extends RfddCommon {
 	className?: string;
 	value?: string;
-	children?: React.ReactElement<RfddOptionType, 'RfddOption'>[];
+	children?: React.ReactElement<RfddOptionProps, 'RfddOption'>[];
 	onChange?: (value: string) => void;
 	mode?: Mode;
+	placeholder?: string;
+	// Receive select props
 	icon?: any;
 	hiddenIcon?: boolean;
-	placeholder?: string;
-	selectStyle?: React.CSSProperties;
 	focusStyle?: React.CSSProperties;
+	selectStyle?: React.CSSProperties;
+	selectClassName?: string;
+	// Receive Option props
+	optionClassName?: string;
+	optionOnClick?: () => void;
 }
 
-export interface RfddOptionType extends RfddType {
+export interface RfddOptionProps extends RfddCommon {
 	className?: string;
 	optionClassName?: string;
 	value?: string | number;
 	onChange?: (value: string) => void;
 	children: React.ReactNode;
 	index?: string | number;
+	optionOnClick?: () => void;
 	onClick?: () => void;
 	onSelectChange?: (selectStr: string) => void;
 }
 
-export interface RfddSelectType extends RfddType {
+export interface RfddSelectProps extends RfddCommon {
 	selectClassName?: string;
 	isValue: boolean;
 	mode: Mode;
@@ -59,10 +61,13 @@ export interface RFDDIconStyleType {
 	isFocus: boolean;
 }
 
-export interface RfddStyleProps {
+export interface RfddStyleType {
 	mode: Mode;
-	width: number;
 	isFocus: boolean;
 }
 
-export type RfddOptionStyleType = RfddCommonStyleType;
+export interface RfddOptionStyleType {
+	style?: React.CSSProperties;
+	hoverStyle?: string;
+	optionStyle?: string;
+}
