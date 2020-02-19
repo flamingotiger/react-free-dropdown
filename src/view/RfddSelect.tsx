@@ -21,10 +21,10 @@ const RfddSelectStyle = {
 			color: ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.black : color.white)};
 		}
 		font-size: 12px;
-		line-height: 12px;
 		border: 1px solid ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.gray : color.dark)};
 		width: 100%;
-		height: 30px;
+		min-height: 30px;
+		height: 100%;
 		position: relative;
 		span {
 			width: 80%;

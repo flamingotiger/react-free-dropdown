@@ -14,7 +14,8 @@ const RfddStyle = {
 		font-weight: lighter;
 		outline: none;
 		min-width: 120px;
-		height: 30px;
+		min-height: 30px;
+		background: white;
 	`,
 	Ul: styled.ul`
 		display: block;
