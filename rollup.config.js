@@ -35,13 +35,6 @@ export default [
 				format: 'umd',
 				name: 'ReactFreeCustomDropDown',
 				globals
-			},
-			{
-				sourcemap: true,
-				file: pkg.browser,
-				format: 'iife',
-				name: 'ReactFreeDropDown',
-				globals
 			}
 		],
 		external,

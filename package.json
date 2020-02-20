@@ -3,7 +3,6 @@
   "version": "1.0.14",
   "description": "Easy custom dropdown list with React",
   "main": "dist/react-free-dropdown.js",
-  "browser": "dist/react-free-dropdown.min.js",
   "types": "dist/index.d.ts",
   "sideEffects": true,
   "scripts": {
