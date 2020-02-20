@@ -1,10 +1,10 @@
 {
   "name": "react-free-dropdown",
-  "version": "1.0.15",
+  "version": "1.1.0",
   "description": "Easy custom dropdown list with React",
   "main": "dist/react-free-dropdown.js",
   "types": "dist/index.d.ts",
-  "sideEffects": true,
+  "sideEffects": false,
   "scripts": {
     "build": "npm run build:clean && npm run build:dist",
     "build:clean": "rm -rf ./dist",
@@ -87,6 +87,7 @@
     "react-dom": "^16.12.0",
     "react-test-renderer": "^16.12.0",
     "rollup": "^1.31.0",
+    "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-peer-deps-external": "^2.2.2",
     "rollup-plugin-sourcemaps": "^0.5.0",
     "rollup-plugin-terser": "^5.2.0",
