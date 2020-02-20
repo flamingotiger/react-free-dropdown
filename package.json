@@ -1,6 +1,6 @@
 {
   "name": "react-free-dropdown",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Easy custom dropdown list with React",
   "main": "dist/react-free-dropdown.js",
   "browser": "dist/react-free-dropdown.min.js",
@@ -89,6 +89,7 @@
     "react-test-renderer": "^16.12.0",
     "rollup": "^1.31.0",
     "rollup-plugin-peer-deps-external": "^2.2.2",
+    "rollup-plugin-sourcemaps": "^0.5.0",
     "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-typescript2": "^0.26.0",
     "rollup-plugin-uglify": "^6.0.4",
