@@ -4,6 +4,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import svgr from '@svgr/rollup';
 import image from '@rollup/plugin-image';
 import url from '@rollup/plugin-url';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 // eslint-disable-next-line import/extensions
 import pkg from './package.json';
 
@@ -37,6 +38,7 @@ export default {
 		typescript({ tsconfig: './tsconfig.json', clean: true }),
 		svgr(),
 		image(),
-		url()
+		url(),
+		peerDepsExternal()
 	]
 };
