@@ -10,7 +10,6 @@ yarn.lock
 stories
 storybook-static
 .storybook
-src
 cypress
 cypress.json
 .npmignore

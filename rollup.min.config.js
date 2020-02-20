@@ -6,6 +6,7 @@ import image from '@rollup/plugin-image';
 import url from '@rollup/plugin-url';
 // eslint-disable-next-line import/extensions
 import { terser } from 'rollup-plugin-terser';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import pkg from './package.json';
 
 const input = 'src/index.ts';
@@ -29,6 +30,7 @@ export default {
 		svgr(),
 		image(),
 		url(),
+		peerDepsExternal(),
 		terser()
 	]
 };
