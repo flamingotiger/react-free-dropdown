@@ -5,7 +5,6 @@ import svgr from '@svgr/rollup';
 import image from '@rollup/plugin-image';
 import url from '@rollup/plugin-url';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import { uglify } from 'rollup-plugin-uglify';
 import sourcemaps from 'rollup-plugin-sourcemaps';
 
 // eslint-disable-next-line import/extensions
@@ -36,6 +35,13 @@ export default [
 				format: 'umd',
 				name: 'ReactFreeCustomDropDown',
 				globals
+			},
+			{
+				sourcemap: true,
+				file: pkg.browser,
+				format: 'iife',
+				name: 'ReactFreeDropDown',
+				globals
 			}
 		],
 		external,
@@ -47,28 +53,6 @@ export default [
 			image(),
 			url(),
 			peerDepsExternal(),
-			sourcemaps()
-		]
-	},
-	{
-		input,
-		output: {
-			sourcemap: true,
-			file: pkg.browser,
-			format: 'iife',
-			name: 'ReactFreeDropDown',
-			globals
-		},
-		external,
-		plugins: [
-			commonjs({ include: 'node_modules/**' }),
-			resolve({ extensions }),
-			typescript({ tsconfig: './tsconfig.json', clean: true }),
-			svgr(),
-			image(),
-			url(),
-			peerDepsExternal(),
-			uglify(),
 			sourcemaps()
 		]
 	}
