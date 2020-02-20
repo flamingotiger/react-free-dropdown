@@ -42,7 +42,8 @@
   },
   "peerDependencies": {
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "styled-components": "^5.0.1"
   },
   "homepage": "https://github.com/flamingotiger/react-free-dropdown#readme",
   "dependencies": {
@@ -70,6 +71,7 @@
     "@typescript-eslint/eslint-plugin": "^2.18.0",
     "@typescript-eslint/parser": "^2.18.0",
     "babel-loader": "^8.0.6",
+    "babel-plugin-styled-components": "^1.10.7",
     "cypress": "^3.8.3",
     "eslint": "^6.1.0",
     "eslint-config-airbnb": "^18.0.1",
