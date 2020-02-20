@@ -6,6 +6,7 @@ import image from '@rollup/plugin-image';
 import url from '@rollup/plugin-url';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import sourcemaps from 'rollup-plugin-sourcemaps';
+import babel from 'rollup-plugin-babel';
 
 // eslint-disable-next-line import/extensions
 import pkg from './package.json';
@@ -39,8 +40,13 @@ export default [
 		],
 		external,
 		plugins: [
-			commonjs({ include: 'node_modules/**' }),
 			resolve({ extensions }),
+			babel({
+				exclude: 'node_modules/**',
+				presets: ['@babel/env', '@babel/preset-react'],
+				plugins: [['babel-plugin-styled-components', { ssr: true, displayName: true, preprocess: false }]]
+			}),
+			commonjs({ include: 'node_modules/**' }),
 			typescript({ tsconfig: './tsconfig.json', clean: true }),
 			svgr(),
 			image(),
