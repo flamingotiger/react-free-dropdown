@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import styled, { css, CSSProp } from 'styled-components';
 import { RfddSelectStyleType, RFDDIconStyleType, RfddSelectProps } from '../types';
 import color from '../common/styles';
 import { isLightMode } from '../common/utils';
@@ -13,15 +13,23 @@ const RfddSelectStyle = {
 		cursor: pointer;
 		padding: 4px 4px 4px 8px;
 		box-sizing: border-box;
-		background: ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.white : color.dark)};
-		color: ${({ mode }: RfddSelectStyleType): string =>
-			isLightMode(mode) ? color.opacityDarkGray : color.opacityLightGray};
+		${({ mode }: RfddSelectStyleType): CSSProp =>
+			isLightMode(mode)
+				? css`
+						border: 1px solid ${color.gray};
+						background: ${color.white};
+						color: ${color.opacityDarkGray};
+				  `
+				: css`
+						border: 1px solid ${color.dark};
+						background: ${color.dark};
+						color: ${color.opacityLightGray};
+				  `}
 		transition: color 0.3s;
 		&:hover {
 			color: ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.black : color.white)};
 		}
 		font-size: 12px;
-		border: 1px solid ${({ mode }: RfddSelectStyleType): string => (isLightMode(mode) ? color.gray : color.dark)};
 		width: 100%;
 		min-height: 30px;
 		height: 100%;

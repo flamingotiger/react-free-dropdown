@@ -77,8 +77,17 @@ const RfddStyle = {
 		overflow: hidden;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 		transition: max-height 0.2s;
-		max-height: ${({ isFocus }: RfddStyleType): string => (isFocus ? '100px' : '0')};
-		${({ isFocus }: RfddStyleType): string => (isFocus ? 'overflow-y: auto' : 'overflow: hidden')};
+		${({ isFocus, listStyle }: RfddStyleType): CSSProp =>
+			isFocus
+				? css`
+						max-height: 100px;
+						overflow-y: auto;
+						${listStyle}
+				  `
+				: css`
+						max-height: 0;
+						overflow: hidden;
+				  `};
 	`
 };
 
@@ -99,21 +108,31 @@ const RfddWrap: React.FC<RfddProps> = props => {
 		mode = 'light',
 		icon,
 		hiddenIcon,
-		placeholder = ''
+		placeholder = '',
+		listStyle = ''
 	} = props;
 	const [selectValue, setSelectValue] = React.useState<string>('');
 	const { isFocus } = useStatusChangeState();
 	const statusChangeDispatch = useStatusChangeDispatch();
+
 	const handleChange = (optionValue: string): void => {
 		if (onChange) {
 			onChange(optionValue);
 		}
 		statusChangeDispatch({ type: StatusChangeActionType.ON_BLUR });
 	};
+
 	const handleSelectChange = (optionStr: string): void => {
 		setSelectValue(optionStr);
 		statusChangeDispatch({ type: StatusChangeActionType.ON_BLUR });
 	};
+
+	React.useEffect(() => {
+		if (typeof value === 'string') {
+			setSelectValue(value);
+		}
+	}, [value]);
+
 	const isValue = value !== '' || selectValue !== '';
 	return (
 		<RfddStyle.Wrapper
@@ -134,7 +153,7 @@ const RfddWrap: React.FC<RfddProps> = props => {
 				hiddenIcon={hiddenIcon}
 			/>
 			{children && (
-				<RfddStyle.Ul isFocus={isFocus} mode={mode} id="list" data-testid="list">
+				<RfddStyle.Ul isFocus={isFocus} mode={mode} id="list" data-testid="list" listStyle={listStyle}>
 					{React.Children.map(
 						children,
 						(
