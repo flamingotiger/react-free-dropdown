@@ -59,6 +59,7 @@ export default App;
 | icon | `any` | usage import image `import image from './example.png'` | `icon={image}` |
 | hiddenIcon | `boolean` | hidden icon | `hiddenIcon={true}` |
 | placeholder | `string` | setting placeholder | `placeholder='area'` |
+| listStyle | `string` | ul list style | `listStyle='max-height:200px'` |
 | optionOnClick | `() => void` | all option onClick | `optionOnClick={() => console.log('onClick')}`|
 
 ## RfddOption Property 🏂

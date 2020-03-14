@@ -17,6 +17,7 @@ export interface RfddProps extends RfddCommon {
 	onChange?: (value: string) => void;
 	mode?: Mode;
 	placeholder?: string;
+	listStyle?: string;
 	// Receive select props
 	icon?: any;
 	hiddenIcon?: boolean;
@@ -64,6 +65,7 @@ export interface RFDDIconStyleType {
 export interface RfddStyleType {
 	mode: Mode;
 	isFocus: boolean;
+	listStyle: string;
 }
 
 export interface RfddOptionStyleType {
