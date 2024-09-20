@@ -77,4 +77,4 @@ export default App;
 
 ![react-free-dropdown preview](./public/react-free-dropdown-example.gif)
 
-🔎[Play the example](https://react-free-dropdown.netlify.com/?path=/story/drop-down-basic--light-mode)
+🔎[Play the example](https://react-free-dropdown.netlify.app/?path=/story/drop-down-basic--light-mode)
